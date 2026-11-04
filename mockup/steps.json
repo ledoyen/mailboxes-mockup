@@ -1,0 +1,4 @@
+[["wait",800],
+["click","[data-hall-btn=E]"],["click","[data-proto-btn=vertical]"],["wait",900],["shot","shots/e-vert.png",".iso-stage"],
+["click","[data-hall-btn=F]"],["click","[data-proto-btn=horizontal]"],["click","[data-turn]"],["wait",1200],["shot","shots/f-horiz.png",".iso-stage"],
+["click","[data-hall-btn=G]"],["click","[data-proto-btn=standard]"],["wait",900],["shot","shots/g-std.png",".iso-stage"]]

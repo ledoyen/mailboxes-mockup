@@ -1,0 +1,7 @@
+*
+!.gitignore
+!.github/
+!.github/**
+!decision*.md
+!mockup/
+!mockup/**
