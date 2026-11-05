@@ -142,25 +142,47 @@ function render() {
     }
   }
 
-  const slots = slotsOf(hall, box);
-  const guestCount = plan.guests[state.hall].reduce((sum, entry) => sum + entry.count, 0);
-  const placed = plan.own[state.hall] + guestCount;
-  slots.slice(0, placed).forEach((slot, index) => {
-    const guest = index >= plan.own[state.hall];
-    const rect = boxRect(hall, box, slot);
-    const z0 = BAND[0] + slot.row * box.h;
-    let svg = S(rect, z0, box.h, guest ? "lit" : "hi", { lit: guest });
-    if (!near(slot.side)) {
-      const inset = Math.min(1.6, box.h * 0.12, box.w * 0.06);
-      const [u0, u1] = [inset / box.w, 1 - inset / box.w];
-      const [z1, z2] = [z0 + inset, z0 + box.h - inset];
-      const frame = [[u0, z1], [u1, z1], [u1, z2], [u0, z2]].map(([u, z]) => facePoint(slot.side, rect, u, z));
+  const addBox = (rect, side, z0, h, w, guest) => {
+    let svg = S(rect, z0, h, guest ? "lit" : "hi", { lit: guest });
+    if (!near(side)) {
+      const inset = Math.min(1.6, h * 0.12, w * 0.06);
+      const [u0, u1] = [inset / w, 1 - inset / w];
+      const [z1, z2] = [z0 + inset, z0 + h - inset];
+      const frame = [[u0, z1], [u1, z1], [u1, z2], [u0, z2]].map(([u, z]) => facePoint(side, rect, u, z));
       svg += lineSvg(frame.map((point, i) => line3(point, frame[(i + 1) % 4])).join(""), { tone: "lo" });
-      svg += lineSvg(line3(facePoint(slot.side, rect, 0.2, z0 + box.h * 0.72), facePoint(slot.side, rect, 0.8, z0 + box.h * 0.72)), { tone: "mid" });
-      svg += dotsSvg([iso(facePoint(slot.side, rect, 0.82, z0 + box.h * 0.36), P)], { size: 0.5 });
+      svg += lineSvg(line3(facePoint(side, rect, 0.2, z0 + h * 0.72), facePoint(side, rect, 0.8, z0 + h * 0.72)), { tone: "mid" });
+      svg += dotsSvg([iso(facePoint(side, rect, 0.82, z0 + h * 0.36), P)], { size: 0.5 });
     }
-    (near(slot.side) ? nearBoxes : farThings).push({ depth: depthAt(rect, z0 + box.h / 2), svg });
-  });
+    (near(side) ? nearBoxes : farThings).push({ depth: depthAt(rect, z0 + h / 2), svg });
+  };
+
+  if (box.blocs) {
+    for (const bloc of plan.blocs[state.hall]) {
+      const def = BLOCS[bloc.type];
+      const guest = bloc.from !== state.hall;
+      const rect = boxRect(hall, { w: def.w, d: def.d }, bloc);
+      const z0 = BLOC_TOP - def.h, cell = def.h / def.rows;
+      let svg = S(rect, z0, def.h, guest ? "lit" : "hi", { lit: guest });
+      if (!near(bloc.side)) {
+        let marks = "";
+        for (let c = 1; c < def.cols; c++) marks += line3(facePoint(bloc.side, rect, c / def.cols, z0 + 1), facePoint(bloc.side, rect, c / def.cols, BLOC_TOP - 1));
+        for (let r = 1; r < def.rows; r++) marks += line3(facePoint(bloc.side, rect, 0.02, z0 + r * cell), facePoint(bloc.side, rect, 0.98, z0 + r * cell));
+        svg += lineSvg(marks, { tone: "lo" });
+        let spare = "";
+        for (let index = bloc.used; index < def.boxes; index++) {
+          const [row, column] = [Math.floor(index / def.cols), index % def.cols];
+          const [u0, u1] = [(column + 0.2) / def.cols, (column + 0.8) / def.cols];
+          spare += line3(facePoint(bloc.side, rect, u0, z0 + (row + 0.25) * cell), facePoint(bloc.side, rect, u1, z0 + (row + 0.75) * cell));
+        }
+        if (spare) svg += lineSvg(spare, { tone: "faint" });
+      }
+      (near(bloc.side) ? nearBoxes : farThings).push({ depth: depthAt(rect, z0 + def.h / 2), svg });
+    }
+  } else {
+    const slots = slotsOf(hall, box);
+    const placed = plan.own[state.hall] + plan.guests[state.hall].reduce((sum, entry) => sum + entry.count, 0);
+    slots.slice(0, placed).forEach((slot, index) => addBox(boxRect(hall, box, slot), slot.side, BAND[0] + slot.row * box.h, box.h, box.w, index >= plan.own[state.hall]));
+  }
 
   const byDepth = (list) => list.sort((a, b) => a.depth - b.depth).map((item) => item.svg).join("");
   scene.innerHTML = out.join("") + byDepth(farBodies) + byDepth(farThings) + byDepth(nearThings) + byDepth(nearBoxes);
@@ -171,24 +193,33 @@ function say() {
   const id = state.hall;
   const guests = plan.guests[id];
   const guestCount = guests.reduce((sum, entry) => sum + entry.count, 0);
-  const text = `${HALLS[id].name} · ${plan.box.label} · ${plan.own[id] + guestCount} of ${plan.capacity[id]} slots` + (guestCount ? ` · incl. ${guests.map((g) => `${g.count} from ${g.from}`).join(", ")}` : "");
+  const placed = plan.own[id] + guestCount;
+  const blocs = plan.box.blocs ? Object.keys(BLOCS).map((type) => [type, plan.blocs[id].filter((bloc) => bloc.type === type).length]).filter(([, n]) => n).map(([type, n]) => `${n} × ${type}`).join(" + ") : "";
+  const spare = plan.box.blocs ? plan.blocs[id].reduce((sum, bloc) => sum + BLOCS[bloc.type].boxes - bloc.used, 0) : 0;
+  const text = `${HALLS[id].name} · ${plan.box.label}${plan.box.blocs ? "" : ` ${plan.box.h}×${plan.box.w}×${plan.box.d} cm`} · ` + (plan.box.blocs ? `${blocs} · ${placed} boxes (${plan.box.h} cm each), ${spare} spare${plan.unplaced[id] ? `, ${plan.unplaced[id]} missing` : ""}` : `${placed} of ${plan.capacity[id]} slots`) + (guestCount ? ` · incl. ${guests.map((g) => `${g.count} from ${g.from}`).join(", ")}` : "");
   if (readout.textContent !== text) readout.textContent = text;
 }
 
 function buildTable() {
   const plan = ALLOC[state.proto];
   const rows = Object.keys(HALLS).map((id) => {
-    const slots = slotsOf(HALLS[id], plan.box);
+    const slots = plan.box.blocs ? [] : slotsOf(HALLS[id], plan.box);
     const guestsIn = plan.guests[id];
     const guestCount = guestsIn.reduce((sum, entry) => sum + entry.count, 0);
     const sent = Object.entries(plan.guests).flatMap(([host, list]) => list.filter((entry) => entry.from === id).map((entry) => `${entry.count} → ${host}`));
     const used = {};
     slots.slice(0, plan.own[id] + guestCount).forEach((slot) => { used[slot.side] = (used[slot.side] || 0) + 1; });
-    const walls = Object.entries(used).map(([side, count]) => `${SIDE_NAME[side]} ${count}`).join(", ");
+    const walls = plan.box.blocs
+      ? "SENW".split("").map((side) => [side, plan.blocs[id].filter((bloc) => bloc.side === side)]).filter(([, list]) => list.length).map(([side, list]) => `${SIDE_NAME[side]} ${Object.keys(BLOCS).map((type) => [type, list.filter((bloc) => bloc.type === type).length]).filter(([, n]) => n).map(([type, n]) => `${n}×${type}`).join("+")}`).join(", ")
+      : Object.entries(used).map(([side, count]) => `${SIDE_NAME[side]} ${count}`).join(", ");
     return `<tr data-hall="${id}"${id === state.hall ? ' aria-selected="true"' : ""}><th scope="row">${HALLS[id].name}</th><td>${DEMAND[id]}</td><td>${plan.capacity[id]}</td><td>${plan.own[id]}</td><td>${guestsIn.map((g) => `${g.count} from ${g.from}`).join(", ") || "–"}</td><td>${sent.join(", ") || "–"}</td><td>${walls}</td></tr>`;
   });
   const total = Object.keys(HALLS).reduce((sum, id) => sum + plan.own[id] + plan.guests[id].reduce((s, g) => s + g.count, 0), 0);
-  tableBox.innerHTML = `<table><thead><tr><th>Hall</th><th>Needs</th><th>Slots</th><th>Own placed</th><th>Guests</th><th>Sent out</th><th>Boxes per wall</th></tr></thead><tbody>${rows.join("")}</tbody><tfoot><tr><th>Total</th><td>${Object.values(DEMAND).reduce((a, b) => a + b, 0)}</td><td>${Object.values(plan.capacity).reduce((a, b) => a + b, 0)}</td><td colspan="4">${total} placed · ${Object.values(plan.unplaced).reduce((a, b) => a + b, 0)} without room</td></tr></tfoot></table>`;
+  tableBox.innerHTML = `<table><thead><tr><th>Hall</th><th>Needs</th><th>Slots</th><th>Own placed</th><th>Guests</th><th>Sent out</th><th>Boxes per wall</th></tr></thead><tbody>${rows.join("")}</tbody><tfoot><tr><th>Total</th><td>${Object.values(DEMAND).reduce((a, b) => a + b, 0)}</td><td>${Object.values(plan.capacity).reduce((a, b) => a + b, 0)}</td><td colspan="4">${total} placed · ${Object.values(plan.unplaced).reduce((a, b) => a + b, 0)} not placed</td></tr></tfoot></table>`;
+  if (plan.columns) {
+    const note = Object.entries(plan.columns).map(([column, { needs, boxes }]) => `${column} ${boxes} for ${needs}${boxes < needs ? ` (${needs - boxes} missing)` : boxes > needs ? ` (${boxes - needs} spare)` : ""}`).join(" · ");
+    tableBox.insertAdjacentHTML("beforeend", `<p class="mk-columns">Per column, boxes hung for boxes needed: ${note}</p>`);
+  }
   tableBox.querySelectorAll("tr[data-hall]").forEach((row) => row.addEventListener("click", () => choose({ hall: row.dataset.hall })));
 }
 

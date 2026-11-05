@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const SKILL = join(process.env.HOME, ".claude/skills/anatomy");
 const k = await import(join(SKILL, "kit/iso-kit.mjs"));
 const { kitScript } = await import(join(SKILL, "scripts/inline-kit.mjs"));
-const { HALLS, PROTOTYPES } = await import("./halls.mjs");
+const { HALLS, PROTOTYPES, sizeOf } = await import("./halls.mjs");
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const theme = process.argv.includes("--light") ? "light" : "dark";
@@ -24,13 +24,14 @@ const CSS = `
 #table th,#table td{padding:6px 10px;text-align:left;border-bottom:1px solid var(--anatomy-faint);white-space:nowrap}
 #table thead th{color:var(--anatomy-muted);font:10.5px var(--anatomy-mono);letter-spacing:.08em;text-transform:uppercase}
 #table tbody th{color:var(--anatomy-strong);font-weight:500}
+#table .mk-columns{margin:10px 0 0;font:11px var(--anatomy-mono);color:var(--anatomy-muted)}
 #table tr[data-hall]{cursor:pointer}
 #table tr[aria-selected="true"]{background:var(--anatomy-shade-2)}
 #table tfoot th,#table tfoot td{color:var(--anatomy-strong);border-bottom:0}
 `;
 
 const protoButtons = Object.entries(PROTOTYPES)
-  .map(([id, box]) => `<button type="button" data-proto-btn="${id}" title="${box.h} × ${box.w} × ${box.d} cm (h × w × d)">${box.label}</button>`)
+  .map(([id, box]) => `<button type="button" data-proto-btn="${id}" title="${sizeOf(box)}">${box.label}</button>`)
   .join("");
 const hallButtons = Object.entries(HALLS)
   .map(([id, hall]) => `<button type="button" data-hall-btn="${id}">${hall.name}</button>`)
@@ -47,7 +48,7 @@ const body = k.plateHtml({
     { mark: "dashed", label: "Cut-away wall, boxes still shown" },
   ],
   caption:
-    "Boxes sit on bare wall between 0.90 and 1.50 m, 10 cm clear of every door, radiator, planter, mirror, interphone and cabinet. Hall sizes and wall segments come from hand-drawn plans and are estimates (mockup/halls.mjs). Screen units are centimetres.",
+    "Box sizes: " + Object.values(PROTOTYPES).map((box) => `${box.label} ${sizeOf(box)}`).join(" · ") + ". Boxes sit on bare wall between 0.90 and 1.50 m (B20 and C30 blocs are 1.45 m tall, top at 1.50 m, kept 30 cm from any radiator), 10 cm clear of every door, planter, mirror, interphone and cabinet. Hall sizes and wall segments come from hand-drawn plans and are estimates (mockup/halls.mjs). Screen units are centimetres.",
   body: `<div class="mk-controls"><div class="mk-group" role="group" aria-label="Hall">${hallButtons}</div><div class="mk-group" role="group" aria-label="Mailbox prototype">${protoButtons}<button type="button" data-turn>Turn 90°</button></div></div><div class="iso-stage" tabindex="0" role="img" aria-label="Hall view: arrow keys turn it"></div><div id="table"></div>`,
 });
 

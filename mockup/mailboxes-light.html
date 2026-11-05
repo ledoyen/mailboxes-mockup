@@ -124,10 +124,11 @@ body{margin:0;background:var(--anatomy-page);color:var(--anatomy-text);font:14px
 #table th,#table td{padding:6px 10px;text-align:left;border-bottom:1px solid var(--anatomy-faint);white-space:nowrap}
 #table thead th{color:var(--anatomy-muted);font:10.5px var(--anatomy-mono);letter-spacing:.08em;text-transform:uppercase}
 #table tbody th{color:var(--anatomy-strong);font-weight:500}
+#table .mk-columns{margin:10px 0 0;font:11px var(--anatomy-mono);color:var(--anatomy-muted)}
 #table tr[data-hall]{cursor:pointer}
 #table tr[aria-selected="true"]{background:var(--anatomy-shade-2)}
 #table tfoot th,#table tfoot td{color:var(--anatomy-strong);border-bottom:0}
-</style></head><body class="iso" data-theme="light"><main class="iso-page"><figure class="iso-figure"><div class="iso-plate"><div class="iso-plate-corners" aria-hidden="true"><span class="iso-plate-corner" data-corner="fig">Fig 1</span><span class="iso-plate-corner" data-corner="title">Mailboxes per hallway</span><span class="iso-plate-corner" data-corner="hint">Drag to turn · ← → keys</span><span class="iso-plate-corner" data-corner="readout" data-readout></span></div><div class="mk-controls"><div class="mk-group" role="group" aria-label="Hall"><button type="button" data-hall-btn="AB">Hall A–B</button><button type="button" data-hall-btn="C">Hall C</button><button type="button" data-hall-btn="D">Hall D (sas 1)</button><button type="button" data-hall-btn="E">Hall E (sas 3)</button><button type="button" data-hall-btn="F">Hall F</button><button type="button" data-hall-btn="G">Hall G (sas 5)</button></div><div class="mk-group" role="group" aria-label="Mailbox prototype"><button type="button" data-proto-btn="standard" title="26 × 26 × 34 cm (h × w × d)">standard</button><button type="button" data-proto-btn="vertical" title="30 × 29 × 15.7 cm (h × w × d)">semi-vertical</button><button type="button" data-proto-btn="horizontal" title="11 × 37 × 27.5 cm (h × w × d)">semi-horizontal</button><button type="button" data-turn>Turn 90°</button></div></div><div class="iso-stage" tabindex="0" role="img" aria-label="Hall view: arrow keys turn it"></div><div id="table"></div></div><figcaption class="iso-legend"><span class="iso-keys"><span class="iso-key"><svg class="iso-swatch" data-mark="raised" viewBox="0 0 16 10" aria-hidden="true"><path d="M2 4.5 8 1.5 14 4.5 14 6 8 9 2 6Z"/><path class="iso-swatch-crease" d="M2 4.5 8 7.5 14 4.5"/></svg>Box of the hall's own columns</span><span class="iso-key"><svg class="iso-swatch" data-mark="lit" viewBox="0 0 16 10" aria-hidden="true"><path d="M2 4.5 8 1.5 14 4.5 14 6 8 9 2 6Z"/><path class="iso-swatch-crease" d="M2 4.5 8 7.5 14 4.5"/></svg>Box of a neighbouring column (hall full)</span><span class="iso-key"><svg class="iso-swatch" data-mark="dashed" viewBox="0 0 16 10" aria-hidden="true"><path d="M1.5 5h13"/></svg>Cut-away wall, boxes still shown</span></span><span class="iso-caption">Boxes sit on bare wall between 0.90 and 1.50 m, 10 cm clear of every door, radiator, planter, mirror, interphone and cabinet. Hall sizes and wall segments come from hand-drawn plans and are estimates (mockup/halls.mjs). Screen units are centimetres.</span></figcaption></figure></main><script type="module">const AZIMUTH = 45;
+</style></head><body class="iso" data-theme="light"><main class="iso-page"><figure class="iso-figure"><div class="iso-plate"><div class="iso-plate-corners" aria-hidden="true"><span class="iso-plate-corner" data-corner="fig">Fig 1</span><span class="iso-plate-corner" data-corner="title">Mailboxes per hallway</span><span class="iso-plate-corner" data-corner="hint">Drag to turn · ← → keys</span><span class="iso-plate-corner" data-corner="readout" data-readout></span></div><div class="mk-controls"><div class="mk-group" role="group" aria-label="Hall"><button type="button" data-hall-btn="AB">Hall A–B</button><button type="button" data-hall-btn="C">Hall C</button><button type="button" data-hall-btn="D">Hall D (sas 1)</button><button type="button" data-hall-btn="E">Hall E (sas 3)</button><button type="button" data-hall-btn="F">Hall F</button><button type="button" data-hall-btn="G">Hall G (sas 5)</button></div><div class="mk-group" role="group" aria-label="Mailbox prototype"><button type="button" data-proto-btn="standard" title="26 h × 26 w × 34 d cm">standard</button><button type="button" data-proto-btn="vertical" title="30 h × 29 w × 15.7 d cm">semi-vertical</button><button type="button" data-proto-btn="horizontal" title="11 h × 37 w × 27.5 d cm">semi-horizontal</button><button type="button" data-proto-btn="collective" title="B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each">B20 + C30</button><button type="button" data-proto-btn="benoit" title="B16 16 boxes (2 × 8, 70.5 w × 116 h × 25 d cm), B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each">Benoit</button><button type="button" data-turn>Turn 90°</button></div></div><div class="iso-stage" tabindex="0" role="img" aria-label="Hall view: arrow keys turn it"></div><div id="table"></div></div><figcaption class="iso-legend"><span class="iso-keys"><span class="iso-key"><svg class="iso-swatch" data-mark="raised" viewBox="0 0 16 10" aria-hidden="true"><path d="M2 4.5 8 1.5 14 4.5 14 6 8 9 2 6Z"/><path class="iso-swatch-crease" d="M2 4.5 8 7.5 14 4.5"/></svg>Box of the hall's own columns</span><span class="iso-key"><svg class="iso-swatch" data-mark="lit" viewBox="0 0 16 10" aria-hidden="true"><path d="M2 4.5 8 1.5 14 4.5 14 6 8 9 2 6Z"/><path class="iso-swatch-crease" d="M2 4.5 8 7.5 14 4.5"/></svg>Box of a neighbouring column (hall full)</span><span class="iso-key"><svg class="iso-swatch" data-mark="dashed" viewBox="0 0 16 10" aria-hidden="true"><path d="M1.5 5h13"/></svg>Cut-away wall, boxes still shown</span></span><span class="iso-caption">Box sizes: standard 26 h × 26 w × 34 d cm · semi-vertical 30 h × 29 w × 15.7 d cm · semi-horizontal 11 h × 37 w × 27.5 d cm · B20 + C30 B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each · Benoit B16 16 boxes (2 × 8, 70.5 w × 116 h × 25 d cm), B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each. Boxes sit on bare wall between 0.90 and 1.50 m (B20 and C30 blocs are 1.45 m tall, top at 1.50 m, kept 30 cm from any radiator), 10 cm clear of every door, planter, mirror, interphone and cabinet. Hall sizes and wall segments come from hand-drawn plans and are estimates (mockup/halls.mjs). Screen units are centimetres.</span></figcaption></figure></main><script type="module">const AZIMUTH = 45;
 const ELEVATION = 30;
 const SHADES = 4;
 const RADIANS = Math.PI / 180;
@@ -810,11 +811,28 @@ const PROTOTYPES = {
   standard: { label: "standard", h: 26, w: 26, d: 34 },
   vertical: { label: "semi-vertical", h: 30, w: 29, d: 15.7 },
   horizontal: { label: "semi-horizontal", h: 11, w: 37, d: 27.5 },
+  collective: { label: "B20 + C30", blocs: true, types: ["B20", "C30"], h: 14.5, d: 25 },
+  // Fixed choice per column, whatever the demand.
+  benoit: { label: "Benoit", blocs: true, types: ["B16", "B20", "C30"], h: 14.5, d: 25, columns: { A: ["C30"], B: ["C30"], C: ["B20", "B20"], D: ["C30"], E: ["B16", "B16"], F: ["B20", "B20"], G: ["C30"] } },
 };
+
+// Collective blocs: one wall-mounted cabinet holding cols × rows boxes, hung with its top at BLOC_TOP.
+const BLOCS = {
+  B16: { boxes: 16, cols: 2, rows: 8, w: 70.5, h: 116, d: 25 },
+  B20: { boxes: 20, cols: 2, rows: 10, w: 70.5, h: 145, d: 25 },
+  C30: { boxes: 30, cols: 3, rows: 10, w: 101, h: 145, d: 25 },
+};
+const BLOC_TOP = 150;
+
+const sizeOf = (box) => (box.blocs
+  ? Object.entries(BLOCS).filter(([name]) => box.types.includes(name)).map(([name, bloc]) => `${name} ${bloc.boxes} boxes (${bloc.cols} × ${bloc.rows}, ${bloc.w} w × ${bloc.h} h × ${bloc.d} d cm)`).join(", ") + `, ${box.h} cm high each`
+  : `${box.h} h × ${box.w} w × ${box.d} d cm`);
 
 const BAND = [90, 150]; // reachable height band, cm above the floor
 const END_MARGIN = 10; // cm kept free at each end of a wall run
-const PER_COLUMN = 3 * 9;
+const RADIATOR_GAP = 30; // cm kept between a radiator and a bloc (any wall)
+const RADIATOR_DEPTH = 12;
+const CORNER_GAP = 30; // cm kept between boxes of two different walls, so every box front stays reachable
 
 const HALLS = {
   AB: {
@@ -879,9 +897,10 @@ const HALLS = {
   },
 };
 
-// Column → hall that serves it (global plan). Columns have 3 apartments × 9 floors.
+// Column → hall that serves it (global plan), and boxes needed per column.
 const COLUMNS = { A: "AB", B: "AB", C: "C", D: "D", E: "E", F: "F", G: "G" };
-const DEMAND = Object.fromEntries(Object.keys(HALLS).map((id) => [id, Object.entries(COLUMNS).filter(([, hall]) => hall === id).length * PER_COLUMN]));
+const BOXES = { A: 31, B: 30, C: 40, D: 30, E: 33, F: 40, G: 30 };
+const DEMAND = Object.fromEntries(Object.keys(HALLS).map((id) => [id, Object.entries(COLUMNS).filter(([, hall]) => hall === id).reduce((sum, [column]) => sum + BOXES[column], 0)]));
 
 for (const [id, hall] of Object.entries(HALLS)) {
   for (const side of "NESW") {
@@ -892,6 +911,8 @@ for (const [id, hall] of Object.entries(HALLS)) {
 }
 
 const rowsOf = (box) => Math.max(0, Math.floor((BAND[1] - BAND[0]) / box.h));
+
+const byLongest = (a, b) => b.length - a.length;
 
 // Free wall runs of a hall: { side, from, length } along the wall, margins applied.
 function freeRunsOf(hall) {
@@ -909,22 +930,174 @@ function freeRunsOf(hall) {
 // Slots (one per box) of a hall for a prototype, filled column by column, longest runs first.
 function slotsOf(hall, box) {
   const rows = rowsOf(box);
-  const slots = [];
+  const span = [BAND[0], BAND[0] + rows * box.h];
+  const slots = [], taken = [];
   for (const run of freeRunsOf(hall).sort((a, b) => b.length - a.length)) {
-    const columns = Math.floor(run.length / box.w);
-    for (let column = 0; column < columns; column++) {
-      for (let row = 0; row < rows; row++) slots.push({ side: run.side, at: run.from + column * box.w, row });
+    const end = run.from + run.length;
+    let cursor = run.from;
+    for (;;) {
+      const at = clearAt(hall, run.side, cursor, box, span, taken, RADIATOR_GAP);
+      if (at + box.w > end) break;
+      taken.push({ side: run.side, rect: wallStrip(hall, run.side, at, box.w, box.d), z0: span[0], z1: span[1] });
+      for (let row = 0; row < rows; row++) slots.push({ side: run.side, at, row });
+      cursor = at + box.w;
     }
   }
   return slots;
 }
 
+function wallStrip(hall, side, at, length, depth) {
+  if (side === "N") return { x: at, y: 0, w: length, d: depth };
+  if (side === "S") return { x: at, y: hall.d - depth, w: length, d: depth };
+  if (side === "W") return { x: 0, y: at, w: depth, d: length };
+  return { x: hall.w - depth, y: at, w: depth, d: length };
+}
+
+// What stands against the walls, with the depth and height range it occupies (same values as the 3D page draws).
+const FIXTURES = {
+  planter: [50, 0, 45], cabinet: [8, 0, 210], lift: [8, 0, 210], interphone: [6, 110, 146], loge: [14, 88, 205],
+  mirror: [3, 20, 200], door: [5, 0, 210], glass: [4, 0, 210], stairs: [5, 0, 210], radiator: [RADIATOR_DEPTH, 12, 74],
+};
+const wallFixtureCache = new WeakMap();
+function wallFixtures(hall) {
+  if (wallFixtureCache.has(hall)) return wallFixtureCache.get(hall);
+  const found = [];
+  for (const side of "NESW") {
+    let at = 0;
+    for (const [kind, length] of hall.walls[side]) {
+      if (FIXTURES[kind]) found.push({ kind, rect: wallStrip(hall, side, at, length, FIXTURES[kind][0]), z0: FIXTURES[kind][1], z1: FIXTURES[kind][2] });
+      at += length;
+    }
+  }
+  wallFixtureCache.set(hall, found);
+  return found;
+}
+
+const overlaps = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.d && b.y < a.y + a.d;
+const rectGap = (a, b) => Math.hypot(Math.max(0, a.x - (b.x + b.w), b.x - (a.x + a.w)), Math.max(0, a.y - (b.y + b.d), b.y - (a.y + a.d)));
+
+// First position at or after `at` where a box or bloc (`size` w × d, between heights z0 and z1) collides with nothing:
+// no fixture on any wall (corners included), no item already `taken` (CORNER_GAP away from items on another wall), and at least `radiatorGap` from every radiator.
+function clearAt(hall, side, at, size, [z0, z1], taken, radiatorGap) {
+  const blockers = [...wallFixtures(hall), ...taken.map((item) => ({ kind: "box", ...item }))];
+  let position = at;
+  for (;;) {
+    const rect = wallStrip(hall, side, position, size.w, size.d);
+    const blocked = blockers.some((item) => (item.kind === "radiator" ? rectGap(rect, item.rect) < radiatorGap : item.z0 < z1 && z0 < item.z1 && (item.side && item.side !== side ? rectGap(rect, item.rect) < CORNER_GAP || overlaps(rect, item.rect) : overlaps(rect, item.rect))));
+    if (!blocked || position > at + 2000) return position;
+    position += 1;
+  }
+}
+
 const distance = (a, b) => Math.hypot(a.at[0] - b.at[0], a.at[1] - b.at[1]);
+
+function nearestOf(ids) {
+  return Object.fromEntries(ids.map((id) => [id, ids.filter((other) => other !== id).sort((a, b) => distance(HALLS[id], HALLS[a]) - distance(HALLS[id], HALLS[b]))]));
+}
+
+// Hangs blocs on the free runs, longest bloc first, each in the tightest run that still fits it.
+function hang(runs, types) {
+  const work = runs.map((run) => ({ ...run }));
+  const taken = [...(work[0]?.taken ?? [])];
+  const placed = [];
+  for (const { type, i } of types.map((type, i) => ({ type, i })).sort((a, b) => BLOCS[b.type].w - BLOCS[a.type].w)) {
+    const def = BLOCS[type], span = [BLOC_TOP - def.h, BLOC_TOP];
+    const start = (run) => clearAt(HALLS[run.hall], run.side, run.at, def, span, taken, RADIATOR_GAP);
+    const run = work.filter((candidate) => candidate.free >= def.w + start(candidate) - candidate.at).sort((a, b) => a.free - b.free)[0];
+    if (!run) return null;
+    const at = start(run);
+    placed.push({ type, i, side: run.side, at });
+    taken.push({ side: run.side, rect: wallStrip(HALLS[run.hall], run.side, at, def.w, def.d), z0: span[0], z1: span[1] });
+    run.free -= at + def.w - run.at;
+    run.at = at + def.w;
+  }
+  for (const run of work) run.taken = taken;
+  return { placed, runs: work };
+}
+
+const before = (a, b) => { for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i] < b[i]; return false; };
+
+// Mix of B20 and C30 that covers `demand` with the least wall; when no mix covers it, the one holding the most boxes.
+function chooseBlocs(runs, demand) {
+  let best = null;
+  for (let c30 = 0; c30 <= 14; c30++) {
+    for (let b20 = 0; b20 <= 14; b20++) {
+      if (!c30 && !b20) continue;
+      const hung = hang(runs, [...Array(c30).fill("C30"), ...Array(b20).fill("B20")]);
+      if (!hung) continue;
+      const boxes = 30 * c30 + 20 * b20, width = 101 * c30 + 70.5 * b20;
+      const key = boxes >= demand ? [0, width, boxes] : [1, -boxes, width];
+      if (!best || before(key, best.key)) best = { ...hung, boxes, key };
+    }
+  }
+  return best;
+}
+
+// Blocs fixed per column: each hall hangs the blocs of its own columns; a column short of boxes stays short.
+function allocateFixed(box) {
+  const ids = Object.keys(HALLS);
+  const blocs = {}, own = {}, unplaced = {}, capacity = {}, columns = {};
+  for (const id of ids) {
+    const mine = Object.entries(COLUMNS).filter(([, hall]) => hall === id).flatMap(([column]) => box.columns[column].map((type) => ({ type, column })));
+    const runs = freeRunsOf(HALLS[id]).sort(byLongest).map((run) => ({ hall: id, taken: [], side: run.side, at: run.from, free: run.length }));
+    const hung = hang(runs, mine.map((item) => item.type));
+    if (!hung) throw new Error(`${box.label}: blocs of hall ${id} do not fit its free walls`);
+    const need = { ...BOXES };
+    blocs[id] = [];
+    for (const bloc of [...hung.placed].sort((a, b) => a.i - b.i)) {
+      const column = mine[bloc.i].column;
+      const used = Math.min(BLOCS[bloc.type].boxes, need[column]);
+      need[column] -= used;
+      blocs[id].push({ ...bloc, from: id, column, used });
+      columns[column] = { needs: BOXES[column], boxes: (columns[column]?.boxes ?? 0) + BLOCS[bloc.type].boxes };
+    }
+    capacity[id] = blocs[id].reduce((sum, bloc) => sum + BLOCS[bloc.type].boxes, 0);
+    own[id] = blocs[id].reduce((sum, bloc) => sum + bloc.used, 0);
+    unplaced[id] = DEMAND[id] - own[id];
+  }
+  return { box, capacity, own, guests: Object.fromEntries(ids.map((id) => [id, []])), unplaced, nearest: nearestOf(ids), blocs, columns };
+}
+
+function allocateBlocs(box) {
+  if (box.columns) return allocateFixed(box);
+  const ids = Object.keys(HALLS);
+  const nearest = nearestOf(ids);
+  const runs = Object.fromEntries(ids.map((id) => [id, freeRunsOf(HALLS[id]).sort(byLongest).map((run) => ({ hall: id, taken: [], side: run.side, at: run.from, free: run.length }))]));
+  const capacity = Object.fromEntries(ids.map((id) => [id, chooseBlocs(runs[id], Infinity)?.boxes ?? 0]));
+  const blocs = Object.fromEntries(ids.map((id) => [id, []]));
+  const guests = Object.fromEntries(ids.map((id) => [id, []]));
+  const own = {}, unplaced = {};
+  const hangFor = (host, from, demand) => {
+    const choice = demand > 0 && chooseBlocs(runs[host], demand);
+    if (!choice) return 0;
+    runs[host] = choice.runs;
+    let left = demand;
+    for (const bloc of choice.placed) {
+      const used = Math.min(BLOCS[bloc.type].boxes, left);
+      left -= used;
+      blocs[host].push({ ...bloc, from, used });
+    }
+    return demand - left;
+  };
+  for (const id of ids) own[id] = hangFor(id, id, DEMAND[id]);
+  for (const id of ids) {
+    let extra = DEMAND[id] - own[id];
+    for (const other of nearest[id]) {
+      const taken = hangFor(other, id, extra);
+      if (taken > 0) guests[other].push({ from: id, count: taken });
+      extra -= taken;
+    }
+    unplaced[id] = extra;
+  }
+  return { box, capacity, own, guests, unplaced, nearest, blocs };
+}
 
 // Own boxes first, then the extras of a full hall go to the nearest hall that still has room.
 function allocate(prototype) {
   const box = PROTOTYPES[prototype];
+  if (box.blocs) return allocateBlocs(box);
   const ids = Object.keys(HALLS);
+  const nearest = nearestOf(ids);
   const capacity = Object.fromEntries(ids.map((id) => [id, slotsOf(HALLS[id], box).length]));
   const own = Object.fromEntries(ids.map((id) => [id, Math.min(DEMAND[id], capacity[id])]));
   const guests = Object.fromEntries(ids.map((id) => [id, []]));
@@ -932,8 +1105,7 @@ function allocate(prototype) {
   const unplaced = {};
   for (const id of ids) {
     let extra = DEMAND[id] - own[id];
-    const near = ids.filter((other) => other !== id).sort((a, b) => distance(HALLS[id], HALLS[a]) - distance(HALLS[id], HALLS[b]));
-    for (const other of near) {
+    for (const other of nearest[id]) {
       const taken = Math.min(extra, free[other]);
       if (taken > 0) guests[other].push({ from: id, count: taken });
       free[other] -= taken;
@@ -941,7 +1113,7 @@ function allocate(prototype) {
     }
     unplaced[id] = extra;
   }
-  return { box, capacity, own, guests, unplaced, nearest: Object.fromEntries(ids.map((id) => [id, ids.filter((o) => o !== id).sort((a, b) => distance(HALLS[id], HALLS[a]) - distance(HALLS[id], HALLS[b]))])) };
+  return { box, capacity, own, guests, unplaced, nearest };
 }
 
 const VIEW_W = 920, VIEW_H = 540;
@@ -1040,7 +1212,7 @@ function render() {
   for (let y = 50; y < hall.d; y += 50) tiles += lineOnTop([0, y], [hall.w, y], 0, P);
   out.push(lineSvg(tiles, { tone: "faint" }));
   out.push(lineSvg(planOutline(room, 0, P, 1), { tone: "lo" }));
-  out.push(faceTextSvg(topMatrix([hall.w / 2, hall.d / 2 + 12], 0, P, "x"), hall.name.toUpperCase(), { size: 26, tone: "lo", anchor: "middle" }));
+  out.push(faceTextSvg(topMatrix([hall.w / 2, hall.d / 2 + 12], 0, P, "x"), hall.name.toUpperCase(), { size: 20, tone: "lo", anchor: "middle" }));
   for (const [side, at] of [["N", [hall.w / 2, 38]], ["S", [hall.w / 2, hall.d - 26]], ["W", [24, hall.d / 2]], ["E", [hall.w - 24, hall.d / 2]]]) {
     out.push(faceTextSvg(topMatrix(at, 0, P, "x"), side, { size: 16, tone: "lo", anchor: "middle" }));
   }
@@ -1060,6 +1232,15 @@ function render() {
       const a = side === "N" || side === "S" ? hall.w : hall.d;
       const corners3 = [facePoint(side, wallRect(hall, side, 0, a, 0, 0), 0, 0), facePoint(side, wallRect(hall, side, 0, a, 0, 0), 1, 0), facePoint(side, wallRect(hall, side, 0, a, 0, 0), 1, WALL_H), facePoint(side, wallRect(hall, side, 0, a, 0, 0), 0, WALL_H)];
       out.push(lineSvg(corners3.map((point, index) => line3(point, corners3[(index + 1) % 4])).join(""), { tone: "faint", dashed: true }));
+      let cursor = 0;
+      for (const [kind, length] of hall.walls[side]) {
+        if (kind === "wall") {
+          const strip = wallRect(hall, side, cursor, length, 0, 0);
+          const band = [[0, BAND[0]], [1, BAND[0]], [1, BAND[1]], [0, BAND[1]]].map(([u, z]) => facePoint(side, strip, u, z));
+          out.push(lineSvg(band.map((point, index) => line3(point, band[(index + 1) % 4])).join(""), { tone: "mid", dashed: true }));
+        }
+        cursor += length;
+      }
     }
     let at = 0;
     for (const [kind, length] of hall.walls[side]) {
@@ -1079,25 +1260,47 @@ function render() {
     }
   }
 
-  const slots = slotsOf(hall, box);
-  const guestCount = plan.guests[state.hall].reduce((sum, entry) => sum + entry.count, 0);
-  const placed = plan.own[state.hall] + guestCount;
-  slots.slice(0, placed).forEach((slot, index) => {
-    const guest = index >= plan.own[state.hall];
-    const rect = boxRect(hall, box, slot);
-    const z0 = BAND[0] + slot.row * box.h;
-    let svg = S(rect, z0, box.h, guest ? "lit" : "hi", { lit: guest });
-    if (!near(slot.side)) {
-      const inset = Math.min(1.6, box.h * 0.12, box.w * 0.06);
-      const [u0, u1] = [inset / box.w, 1 - inset / box.w];
-      const [z1, z2] = [z0 + inset, z0 + box.h - inset];
-      const frame = [[u0, z1], [u1, z1], [u1, z2], [u0, z2]].map(([u, z]) => facePoint(slot.side, rect, u, z));
+  const addBox = (rect, side, z0, h, w, guest) => {
+    let svg = S(rect, z0, h, guest ? "lit" : "hi", { lit: guest });
+    if (!near(side)) {
+      const inset = Math.min(1.6, h * 0.12, w * 0.06);
+      const [u0, u1] = [inset / w, 1 - inset / w];
+      const [z1, z2] = [z0 + inset, z0 + h - inset];
+      const frame = [[u0, z1], [u1, z1], [u1, z2], [u0, z2]].map(([u, z]) => facePoint(side, rect, u, z));
       svg += lineSvg(frame.map((point, i) => line3(point, frame[(i + 1) % 4])).join(""), { tone: "lo" });
-      svg += lineSvg(line3(facePoint(slot.side, rect, 0.2, z0 + box.h * 0.72), facePoint(slot.side, rect, 0.8, z0 + box.h * 0.72)), { tone: "mid" });
-      svg += dotsSvg([iso(facePoint(slot.side, rect, 0.82, z0 + box.h * 0.36), P)], { size: 0.5 });
+      svg += lineSvg(line3(facePoint(side, rect, 0.2, z0 + h * 0.72), facePoint(side, rect, 0.8, z0 + h * 0.72)), { tone: "mid" });
+      svg += dotsSvg([iso(facePoint(side, rect, 0.82, z0 + h * 0.36), P)], { size: 0.5 });
     }
-    (near(slot.side) ? nearBoxes : farThings).push({ depth: depthAt(rect, z0 + box.h / 2), svg });
-  });
+    (near(side) ? nearBoxes : farThings).push({ depth: depthAt(rect, z0 + h / 2), svg });
+  };
+
+  if (box.blocs) {
+    for (const bloc of plan.blocs[state.hall]) {
+      const def = BLOCS[bloc.type];
+      const guest = bloc.from !== state.hall;
+      const rect = boxRect(hall, { w: def.w, d: def.d }, bloc);
+      const z0 = BLOC_TOP - def.h, cell = def.h / def.rows;
+      let svg = S(rect, z0, def.h, guest ? "lit" : "hi", { lit: guest });
+      if (!near(bloc.side)) {
+        let marks = "";
+        for (let c = 1; c < def.cols; c++) marks += line3(facePoint(bloc.side, rect, c / def.cols, z0 + 1), facePoint(bloc.side, rect, c / def.cols, BLOC_TOP - 1));
+        for (let r = 1; r < def.rows; r++) marks += line3(facePoint(bloc.side, rect, 0.02, z0 + r * cell), facePoint(bloc.side, rect, 0.98, z0 + r * cell));
+        svg += lineSvg(marks, { tone: "lo" });
+        let spare = "";
+        for (let index = bloc.used; index < def.boxes; index++) {
+          const [row, column] = [Math.floor(index / def.cols), index % def.cols];
+          const [u0, u1] = [(column + 0.2) / def.cols, (column + 0.8) / def.cols];
+          spare += line3(facePoint(bloc.side, rect, u0, z0 + (row + 0.25) * cell), facePoint(bloc.side, rect, u1, z0 + (row + 0.75) * cell));
+        }
+        if (spare) svg += lineSvg(spare, { tone: "faint" });
+      }
+      (near(bloc.side) ? nearBoxes : farThings).push({ depth: depthAt(rect, z0 + def.h / 2), svg });
+    }
+  } else {
+    const slots = slotsOf(hall, box);
+    const placed = plan.own[state.hall] + plan.guests[state.hall].reduce((sum, entry) => sum + entry.count, 0);
+    slots.slice(0, placed).forEach((slot, index) => addBox(boxRect(hall, box, slot), slot.side, BAND[0] + slot.row * box.h, box.h, box.w, index >= plan.own[state.hall]));
+  }
 
   const byDepth = (list) => list.sort((a, b) => a.depth - b.depth).map((item) => item.svg).join("");
   scene.innerHTML = out.join("") + byDepth(farBodies) + byDepth(farThings) + byDepth(nearThings) + byDepth(nearBoxes);
@@ -1108,24 +1311,33 @@ function say() {
   const id = state.hall;
   const guests = plan.guests[id];
   const guestCount = guests.reduce((sum, entry) => sum + entry.count, 0);
-  const text = `${HALLS[id].name} · ${plan.box.label} · ${plan.own[id] + guestCount} of ${plan.capacity[id]} slots` + (guestCount ? ` · incl. ${guests.map((g) => `${g.count} from ${g.from}`).join(", ")}` : "");
+  const placed = plan.own[id] + guestCount;
+  const blocs = plan.box.blocs ? Object.keys(BLOCS).map((type) => [type, plan.blocs[id].filter((bloc) => bloc.type === type).length]).filter(([, n]) => n).map(([type, n]) => `${n} × ${type}`).join(" + ") : "";
+  const spare = plan.box.blocs ? plan.blocs[id].reduce((sum, bloc) => sum + BLOCS[bloc.type].boxes - bloc.used, 0) : 0;
+  const text = `${HALLS[id].name} · ${plan.box.label}${plan.box.blocs ? "" : ` ${plan.box.h}×${plan.box.w}×${plan.box.d} cm`} · ` + (plan.box.blocs ? `${blocs} · ${placed} boxes (${plan.box.h} cm each), ${spare} spare${plan.unplaced[id] ? `, ${plan.unplaced[id]} missing` : ""}` : `${placed} of ${plan.capacity[id]} slots`) + (guestCount ? ` · incl. ${guests.map((g) => `${g.count} from ${g.from}`).join(", ")}` : "");
   if (readout.textContent !== text) readout.textContent = text;
 }
 
 function buildTable() {
   const plan = ALLOC[state.proto];
   const rows = Object.keys(HALLS).map((id) => {
-    const slots = slotsOf(HALLS[id], plan.box);
+    const slots = plan.box.blocs ? [] : slotsOf(HALLS[id], plan.box);
     const guestsIn = plan.guests[id];
     const guestCount = guestsIn.reduce((sum, entry) => sum + entry.count, 0);
     const sent = Object.entries(plan.guests).flatMap(([host, list]) => list.filter((entry) => entry.from === id).map((entry) => `${entry.count} → ${host}`));
     const used = {};
     slots.slice(0, plan.own[id] + guestCount).forEach((slot) => { used[slot.side] = (used[slot.side] || 0) + 1; });
-    const walls = Object.entries(used).map(([side, count]) => `${SIDE_NAME[side]} ${count}`).join(", ");
+    const walls = plan.box.blocs
+      ? "SENW".split("").map((side) => [side, plan.blocs[id].filter((bloc) => bloc.side === side)]).filter(([, list]) => list.length).map(([side, list]) => `${SIDE_NAME[side]} ${Object.keys(BLOCS).map((type) => [type, list.filter((bloc) => bloc.type === type).length]).filter(([, n]) => n).map(([type, n]) => `${n}×${type}`).join("+")}`).join(", ")
+      : Object.entries(used).map(([side, count]) => `${SIDE_NAME[side]} ${count}`).join(", ");
     return `<tr data-hall="${id}"${id === state.hall ? ' aria-selected="true"' : ""}><th scope="row">${HALLS[id].name}</th><td>${DEMAND[id]}</td><td>${plan.capacity[id]}</td><td>${plan.own[id]}</td><td>${guestsIn.map((g) => `${g.count} from ${g.from}`).join(", ") || "–"}</td><td>${sent.join(", ") || "–"}</td><td>${walls}</td></tr>`;
   });
   const total = Object.keys(HALLS).reduce((sum, id) => sum + plan.own[id] + plan.guests[id].reduce((s, g) => s + g.count, 0), 0);
-  tableBox.innerHTML = `<table><thead><tr><th>Hall</th><th>Needs</th><th>Slots</th><th>Own placed</th><th>Guests</th><th>Sent out</th><th>Boxes per wall</th></tr></thead><tbody>${rows.join("")}</tbody><tfoot><tr><th>Total</th><td>${Object.values(DEMAND).reduce((a, b) => a + b, 0)}</td><td>${Object.values(plan.capacity).reduce((a, b) => a + b, 0)}</td><td colspan="4">${total} placed · ${Object.values(plan.unplaced).reduce((a, b) => a + b, 0)} without room</td></tr></tfoot></table>`;
+  tableBox.innerHTML = `<table><thead><tr><th>Hall</th><th>Needs</th><th>Slots</th><th>Own placed</th><th>Guests</th><th>Sent out</th><th>Boxes per wall</th></tr></thead><tbody>${rows.join("")}</tbody><tfoot><tr><th>Total</th><td>${Object.values(DEMAND).reduce((a, b) => a + b, 0)}</td><td>${Object.values(plan.capacity).reduce((a, b) => a + b, 0)}</td><td colspan="4">${total} placed · ${Object.values(plan.unplaced).reduce((a, b) => a + b, 0)} not placed</td></tr></tfoot></table>`;
+  if (plan.columns) {
+    const note = Object.entries(plan.columns).map(([column, { needs, boxes }]) => `${column} ${boxes} for ${needs}${boxes < needs ? ` (${needs - boxes} missing)` : boxes > needs ? ` (${boxes - needs} spare)` : ""}`).join(" · ");
+    tableBox.insertAdjacentHTML("beforeend", `<p class="mk-columns">Per column, boxes hung for boxes needed: ${note}</p>`);
+  }
   tableBox.querySelectorAll("tr[data-hall]").forEach((row) => row.addEventListener("click", () => choose({ hall: row.dataset.hall })));
 }
 
