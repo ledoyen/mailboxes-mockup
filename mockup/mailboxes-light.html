@@ -119,6 +119,8 @@ body{margin:0;background:var(--anatomy-page);color:var(--anatomy-text);font:14px
 .mk-controls button:focus-visible{outline:1px solid var(--anatomy-hi);outline-offset:2px}
 .iso-stage{touch-action:pan-y;cursor:grab;user-select:none}
 .iso-stage:focus-visible{outline:1px solid var(--anatomy-mid);outline-offset:4px}
+.mk-photo{margin:10px 0 0;font:11px var(--anatomy-mono);letter-spacing:.06em}
+.mk-photo a{color:var(--anatomy-strong)}
 #table{margin-top:20px;overflow-x:auto}
 #table table{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
 #table th,#table td{padding:6px 10px;text-align:left;border-bottom:1px solid var(--anatomy-faint);white-space:nowrap}
@@ -128,7 +130,7 @@ body{margin:0;background:var(--anatomy-page);color:var(--anatomy-text);font:14px
 #table tr[data-hall]{cursor:pointer}
 #table tr[aria-selected="true"]{background:var(--anatomy-shade-2)}
 #table tfoot th,#table tfoot td{color:var(--anatomy-strong);border-bottom:0}
-</style></head><body class="iso" data-theme="light"><main class="iso-page"><figure class="iso-figure"><div class="iso-plate"><div class="iso-plate-corners" aria-hidden="true"><span class="iso-plate-corner" data-corner="fig">Fig 1</span><span class="iso-plate-corner" data-corner="title">Mailboxes per hallway</span><span class="iso-plate-corner" data-corner="hint">Drag to turn · ← → keys</span><span class="iso-plate-corner" data-corner="readout" data-readout></span></div><div class="mk-controls"><div class="mk-group" role="group" aria-label="Hall"><button type="button" data-hall-btn="AB">Hall A–B</button><button type="button" data-hall-btn="C">Hall C</button><button type="button" data-hall-btn="D">Hall D (sas 1)</button><button type="button" data-hall-btn="E">Hall E (sas 3)</button><button type="button" data-hall-btn="F">Hall F</button><button type="button" data-hall-btn="G">Hall G (sas 5)</button></div><div class="mk-group" role="group" aria-label="Mailbox prototype"><button type="button" data-proto-btn="standard" title="26 h × 26 w × 34 d cm">standard</button><button type="button" data-proto-btn="vertical" title="30 h × 29 w × 15.7 d cm">semi-vertical</button><button type="button" data-proto-btn="horizontal" title="11 h × 37 w × 27.5 d cm">semi-horizontal</button><button type="button" data-proto-btn="collective" title="B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each">B20 + C30</button><button type="button" data-proto-btn="benoit" title="B16 16 boxes (2 × 8, 70.5 w × 116 h × 25 d cm), B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each">Benoit</button><button type="button" data-turn>Turn 90°</button></div></div><div class="iso-stage" tabindex="0" role="img" aria-label="Hall view: arrow keys turn it"></div><div id="table"></div></div><figcaption class="iso-legend"><span class="iso-keys"><span class="iso-key"><svg class="iso-swatch" data-mark="raised" viewBox="0 0 16 10" aria-hidden="true"><path d="M2 4.5 8 1.5 14 4.5 14 6 8 9 2 6Z"/><path class="iso-swatch-crease" d="M2 4.5 8 7.5 14 4.5"/></svg>Box of the hall's own columns</span><span class="iso-key"><svg class="iso-swatch" data-mark="lit" viewBox="0 0 16 10" aria-hidden="true"><path d="M2 4.5 8 1.5 14 4.5 14 6 8 9 2 6Z"/><path class="iso-swatch-crease" d="M2 4.5 8 7.5 14 4.5"/></svg>Box of a neighbouring column (hall full)</span><span class="iso-key"><svg class="iso-swatch" data-mark="dashed" viewBox="0 0 16 10" aria-hidden="true"><path d="M1.5 5h13"/></svg>Cut-away wall, boxes still shown</span></span><span class="iso-caption">Box sizes: standard 26 h × 26 w × 34 d cm · semi-vertical 30 h × 29 w × 15.7 d cm · semi-horizontal 11 h × 37 w × 27.5 d cm · B20 + C30 B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each · Benoit B16 16 boxes (2 × 8, 70.5 w × 116 h × 25 d cm), B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each. Boxes sit on bare wall between 0.90 and 1.50 m (B20 and C30 blocs are 1.45 m tall, top at 1.50 m, kept 30 cm from any radiator), 10 cm clear of every door, planter, mirror, interphone and cabinet. Hall sizes and wall segments come from hand-drawn plans and are estimates (mockup/halls.mjs). Screen units are centimetres.</span></figcaption></figure></main><script type="module">const AZIMUTH = 45;
+</style></head><body class="iso" data-theme="light"><main class="iso-page"><figure class="iso-figure"><div class="iso-plate"><div class="iso-plate-corners" aria-hidden="true"><span class="iso-plate-corner" data-corner="fig">Fig 1</span><span class="iso-plate-corner" data-corner="title">Mailboxes per hallway</span><span class="iso-plate-corner" data-corner="hint">Drag to turn · ← → keys</span><span class="iso-plate-corner" data-corner="readout" data-readout></span></div><div class="mk-controls"><div class="mk-group" role="group" aria-label="Hall"><button type="button" data-hall-btn="AB">Hall A–B</button><button type="button" data-hall-btn="C">Hall C</button><button type="button" data-hall-btn="D">Hall D (sas 1)</button><button type="button" data-hall-btn="E">Hall E (sas 3)</button><button type="button" data-hall-btn="F">Hall F</button><button type="button" data-hall-btn="G">Hall G (sas 5)</button></div><div class="mk-group" role="group" aria-label="Mailbox prototype"><button type="button" data-proto-btn="standard" title="26 h × 26 w × 34 d cm">standard</button><button type="button" data-proto-btn="vertical" title="30 h × 29 w × 15.7 d cm">semi-vertical</button><button type="button" data-proto-btn="horizontal" title="11 h × 37 w × 27.5 d cm">semi-horizontal</button><button type="button" data-proto-btn="collective" title="B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each">B20 + C30</button><button type="button" data-proto-btn="vincent" title="Mercier Isara blocs of 1 to 4 columns × 4 rows (33 cm per column, 30.1 cm per row, 34 cm deep (NF D 27-404), 5 cm between blocs), base at 56 cm (50 cm in hall D)">Vincent</button><button type="button" data-proto-btn="benoit" title="B16 16 boxes (2 × 8, 70.5 w × 116 h × 25 d cm), B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each">Benoit</button><button type="button" data-turn>Turn 90°</button></div></div><div class="iso-stage" tabindex="0" role="img" aria-label="Hall view: arrow keys turn it"></div><p class="mk-photo" hidden></p><div id="table"></div></div><figcaption class="iso-legend"><span class="iso-keys"><span class="iso-key"><svg class="iso-swatch" data-mark="raised" viewBox="0 0 16 10" aria-hidden="true"><path d="M2 4.5 8 1.5 14 4.5 14 6 8 9 2 6Z"/><path class="iso-swatch-crease" d="M2 4.5 8 7.5 14 4.5"/></svg>Box of the hall's own columns</span><span class="iso-key"><svg class="iso-swatch" data-mark="lit" viewBox="0 0 16 10" aria-hidden="true"><path d="M2 4.5 8 1.5 14 4.5 14 6 8 9 2 6Z"/><path class="iso-swatch-crease" d="M2 4.5 8 7.5 14 4.5"/></svg>Box of a neighbouring column (hall full)</span><span class="iso-key"><svg class="iso-swatch" data-mark="dashed" viewBox="0 0 16 10" aria-hidden="true"><path d="M1.5 5h13"/></svg>Cut-away wall, boxes still shown</span></span><span class="iso-caption">Box sizes: standard 26 h × 26 w × 34 d cm · semi-vertical 30 h × 29 w × 15.7 d cm · semi-horizontal 11 h × 37 w × 27.5 d cm · B20 + C30 B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each · Vincent Mercier Isara blocs of 1 to 4 columns × 4 rows (33 cm per column, 30.1 cm per row, 34 cm deep (NF D 27-404), 5 cm between blocs), base at 56 cm (50 cm in hall D) · Benoit B16 16 boxes (2 × 8, 70.5 w × 116 h × 25 d cm), B20 20 boxes (2 × 10, 70.5 w × 145 h × 25 d cm), C30 30 boxes (3 × 10, 101 w × 145 h × 25 d cm), 14.5 cm high each. Boxes sit on bare wall between 0.90 and 1.50 m (B20 and C30 blocs are 1.45 m tall, top at 1.50 m, kept 30 cm from any radiator; Vincent blocs are 1.20 m tall, base at 0.56 m, as in the hall photos), 10 cm clear of every door, planter, mirror, interphone and cabinet. Hall sizes and wall segments come from hand-drawn plans and are estimates (mockup/halls.mjs). Screen units are centimetres.</span></figcaption></figure></main><script type="module">const AZIMUTH = 45;
 const ELEVATION = 30;
 const SHADES = 4;
 const RADIANS = Math.PI / 180;
@@ -813,6 +815,19 @@ const PROTOTYPES = {
   horizontal: { label: "semi-horizontal", h: 11, w: 37, d: 27.5 },
   collective: { label: "B20 + C30", blocs: true, types: ["B20", "C30"], h: 14.5, d: 25 },
   // Fixed choice per column, whatever the demand.
+  // Mercier Isara (NF D 27-404): blocs of 1–4 columns × 4 rows. Hall layouts C, D, E, G come from pictures-simulation/; AB and F are planned.
+  vincent: {
+    label: "Vincent", blocs: true, types: ["V1", "V2", "V3", "V4"], h: 30.1, d: 34, base: 56,
+    size: "Mercier Isara blocs of 1 to 4 columns × 4 rows (33 cm per column, 30.1 cm per row, 34 cm deep (NF D 27-404), 5 cm between blocs), base at 56 cm (50 cm in hall D)",
+    photos: { C: "hall C.jpeg", D: "hall D.jpeg", E: "hall E.jpeg", G: "Hall G.jpeg" }, // pictures-simulation/
+    layouts: {
+      // at: cm along the wall (N/S walls from the west end, E/W walls from the north end).
+      C: [{ side: "W", at: 304, cols: 3 }, { side: "W", at: 408, cols: 4 }, { side: "W", at: 228.5, cols: 1 }, { side: "W", at: 19, cols: 2 }],
+      D: [{ side: "W", at: 20, cols: 1, base: 50 }, { side: "W", at: 58, cols: 4, base: 50 }, { side: "W", at: 351, cols: 3, base: 50 }],
+      E: [{ side: "E", at: 10, cols: 4 }, { side: "E", at: 147, cols: 4 }, { side: "E", at: 305, cols: 1, rows: 2, base: 86.1 }],
+      G: [{ side: "W", at: 10, cols: 4 }, { side: "W", at: 147, cols: 4 }],
+    },
+  },
   benoit: { label: "Benoit", blocs: true, types: ["B16", "B20", "C30"], h: 14.5, d: 25, walls: { C: "E", E: "W" }, columns: { A: ["C30"], B: ["C30"], C: ["B20", "B20"], D: ["C30"], E: ["B16", "B16"], F: ["B20", "B20"], G: ["C30"] } },
 };
 
@@ -822,9 +837,17 @@ const BLOCS = {
   B20: { boxes: 20, cols: 2, rows: 10, w: 70.5, h: 145, d: 25 },
   C30: { boxes: 30, cols: 3, rows: 10, w: 101, h: 145, d: 25 },
 };
+for (const cols of [1, 2, 3, 4]) BLOCS[`V${cols}`] = { boxes: 4 * cols, cols, rows: 4, w: 33 * cols, h: 120.4, d: 34, gap: 5 };
 const BLOC_TOP = 150;
 
-const sizeOf = (box) => (box.blocs
+// Size and height of a hung bloc: rows and base can differ from the type (Vincent hangs 2 boxes of a 4-row bloc at mid-height).
+function blocGeometry(bloc) {
+  const def = BLOCS[bloc.type];
+  const rows = bloc.rows ?? def.rows, cell = def.h / def.rows, h = rows * cell;
+  return { def, rows, cell, h, z0: bloc.z0 ?? BLOC_TOP - h, boxes: def.cols * rows };
+}
+
+const sizeOf = (box) => (box.size ? box.size : box.blocs
   ? Object.entries(BLOCS).filter(([name]) => box.types.includes(name)).map(([name, bloc]) => `${name} ${bloc.boxes} boxes (${bloc.cols} × ${bloc.rows}, ${bloc.w} w × ${bloc.h} h × ${bloc.d} d cm)`).join(", ") + `, ${box.h} cm high each`
   : `${box.h} h × ${box.w} w × ${box.d} d cm`);
 
@@ -996,20 +1019,21 @@ function nearestOf(ids) {
 }
 
 // Hangs blocs on the free runs, longest bloc first, each in the tightest run that still fits it.
-function hang(runs, types) {
+function hang(runs, types, base) {
   const work = runs.map((run) => ({ ...run }));
   const taken = [...(work[0]?.taken ?? [])];
   const placed = [];
   for (const { type, i } of types.map((type, i) => ({ type, i })).sort((a, b) => BLOCS[b.type].w - BLOCS[a.type].w)) {
-    const def = BLOCS[type], span = [BLOC_TOP - def.h, BLOC_TOP];
+    const def = BLOCS[type], span = base == null ? [BLOC_TOP - def.h, BLOC_TOP] : [base, base + def.h];
     const start = (run) => clearAt(HALLS[run.hall], run.side, run.at, def, span, taken, RADIATOR_GAP);
     const run = work.filter((candidate) => candidate.free >= def.w + start(candidate) - candidate.at).sort((a, b) => a.free - b.free)[0];
     if (!run) return null;
     const at = start(run);
-    placed.push({ type, i, side: run.side, at });
+    placed.push({ type, i, side: run.side, at, ...(base == null ? {} : { z0: base }) });
     taken.push({ side: run.side, rect: wallStrip(HALLS[run.hall], run.side, at, def.w, def.d), z0: span[0], z1: span[1] });
-    run.free -= at + def.w - run.at;
-    run.at = at + def.w;
+    const gap = def.gap ?? 0;
+    run.free -= at + def.w + gap - run.at;
+    run.at = at + def.w + gap;
   }
   for (const run of work) run.taken = taken;
   return { placed, runs: work };
@@ -1058,7 +1082,53 @@ function allocateFixed(box) {
   return { box, capacity, own, guests: Object.fromEntries(ids.map((id) => [id, []])), unplaced, nearest: nearestOf(ids), blocs, columns };
 }
 
+// Vincent: halls with a picture-based layout hang it as drawn; the others get the fewest, biggest blocs that cover the demand with the fewest spare columns.
+function allocateVincent(box) {
+  const ids = Object.keys(HALLS);
+  const blocs = {}, own = {}, unplaced = {}, capacity = {};
+  for (const id of ids) {
+    const hall = HALLS[id];
+    if (box.layouts[id]) {
+      const taken = [];
+      blocs[id] = box.layouts[id].map((item, i) => {
+        const bloc = { type: `V${item.cols}`, i, side: item.side, at: item.at, z0: item.base ?? box.base, rows: item.rows };
+        const { def, z0, h } = blocGeometry(bloc);
+        if (clearAt(hall, bloc.side, bloc.at, def, [z0, z0 + h], taken, RADIATOR_GAP) !== bloc.at) throw new Error(`${box.label}: layout of hall ${id} collides at ${bloc.side} wall, ${bloc.at} cm`);
+        taken.push({ side: bloc.side, rect: wallStrip(hall, bloc.side, bloc.at, def.w, def.d), z0, z1: z0 + h });
+        return bloc;
+      });
+    } else {
+      const runs = freeRunsOf(hall).sort(byLongest).map((run) => ({ hall: id, taken: [], side: run.side, at: run.from, free: run.length }));
+      const need = Math.ceil(DEMAND[id] / 4);
+      let best = null;
+      for (let cols = need; cols <= need + 3 && !best; cols++) {
+        for (let n4 = 0; n4 * 4 <= cols; n4++) for (let n3 = 0; n4 * 4 + n3 * 3 <= cols; n3++) for (let n2 = 0; n4 * 4 + n3 * 3 + n2 * 2 <= cols; n2++) {
+          const n1 = cols - 4 * n4 - 3 * n3 - 2 * n2;
+          const hung = hang(runs, [...Array(n4).fill("V4"), ...Array(n3).fill("V3"), ...Array(n2).fill("V2"), ...Array(n1).fill("V1")], box.base);
+          if (!hung) continue;
+          const width = hung.placed.reduce((sum, bloc) => sum + BLOCS[bloc.type].w, 0);
+          const key = [hung.placed.length, width];
+          if (!best || before(key, best.key)) best = { ...hung, key };
+        }
+      }
+      if (!best) throw new Error(`${box.label}: blocs of hall ${id} do not fit its free walls`);
+      blocs[id] = best.placed.sort((a, b) => a.i - b.i);
+    }
+    let left = DEMAND[id];
+    blocs[id] = blocs[id].map((bloc) => {
+      const used = Math.min(blocGeometry(bloc).boxes, left);
+      left -= used;
+      return { ...bloc, from: id, used };
+    });
+    capacity[id] = blocs[id].reduce((sum, bloc) => sum + blocGeometry(bloc).boxes, 0);
+    own[id] = DEMAND[id] - left;
+    unplaced[id] = left;
+  }
+  return { box, capacity, own, guests: Object.fromEntries(ids.map((id) => [id, []])), unplaced, nearest: nearestOf(ids), blocs };
+}
+
 function allocateBlocs(box) {
+  if (box.layouts) return allocateVincent(box);
   if (box.columns) return allocateFixed(box);
   const ids = Object.keys(HALLS);
   const nearest = nearestOf(ids);
@@ -1276,25 +1346,24 @@ function render() {
 
   if (box.blocs) {
     for (const bloc of plan.blocs[state.hall]) {
-      const def = BLOCS[bloc.type];
+      const { def, rows, cell, h, z0, boxes } = blocGeometry(bloc);
       const guest = bloc.from !== state.hall;
       const rect = boxRect(hall, { w: def.w, d: def.d }, bloc);
-      const z0 = BLOC_TOP - def.h, cell = def.h / def.rows;
-      let svg = S(rect, z0, def.h, guest ? "lit" : "hi", { lit: guest });
+      let svg = S(rect, z0, h, guest ? "lit" : "hi", { lit: guest });
       if (!near(bloc.side)) {
         let marks = "";
-        for (let c = 1; c < def.cols; c++) marks += line3(facePoint(bloc.side, rect, c / def.cols, z0 + 1), facePoint(bloc.side, rect, c / def.cols, BLOC_TOP - 1));
-        for (let r = 1; r < def.rows; r++) marks += line3(facePoint(bloc.side, rect, 0.02, z0 + r * cell), facePoint(bloc.side, rect, 0.98, z0 + r * cell));
+        for (let c = 1; c < def.cols; c++) marks += line3(facePoint(bloc.side, rect, c / def.cols, z0 + 1), facePoint(bloc.side, rect, c / def.cols, z0 + h - 1));
+        for (let r = 1; r < rows; r++) marks += line3(facePoint(bloc.side, rect, 0.02, z0 + r * cell), facePoint(bloc.side, rect, 0.98, z0 + r * cell));
         svg += lineSvg(marks, { tone: "lo" });
         let spare = "";
-        for (let index = bloc.used; index < def.boxes; index++) {
+        for (let index = bloc.used; index < boxes; index++) {
           const [row, column] = [Math.floor(index / def.cols), index % def.cols];
           const [u0, u1] = [(column + 0.2) / def.cols, (column + 0.8) / def.cols];
           spare += line3(facePoint(bloc.side, rect, u0, z0 + (row + 0.25) * cell), facePoint(bloc.side, rect, u1, z0 + (row + 0.75) * cell));
         }
         if (spare) svg += lineSvg(spare, { tone: "faint" });
       }
-      (near(bloc.side) ? nearBoxes : farThings).push({ depth: depthAt(rect, z0 + def.h / 2), svg });
+      (near(bloc.side) ? nearBoxes : farThings).push({ depth: depthAt(rect, z0 + h / 2), svg });
     }
   } else {
     const slots = slotsOf(hall, box);
@@ -1313,9 +1382,17 @@ function say() {
   const guestCount = guests.reduce((sum, entry) => sum + entry.count, 0);
   const placed = plan.own[id] + guestCount;
   const blocs = plan.box.blocs ? Object.keys(BLOCS).map((type) => [type, plan.blocs[id].filter((bloc) => bloc.type === type).length]).filter(([, n]) => n).map(([type, n]) => `${n} × ${type}`).join(" + ") : "";
-  const spare = plan.box.blocs ? plan.blocs[id].reduce((sum, bloc) => sum + BLOCS[bloc.type].boxes - bloc.used, 0) : 0;
+  const spare = plan.box.blocs ? plan.blocs[id].reduce((sum, bloc) => sum + blocGeometry(bloc).boxes - bloc.used, 0) : 0;
   const text = `${HALLS[id].name} · ${plan.box.label}${plan.box.blocs ? "" : ` ${plan.box.h}×${plan.box.w}×${plan.box.d} cm`} · ` + (plan.box.blocs ? `${blocs} · ${placed} boxes (${plan.box.h} cm each), ${spare} spare${plan.unplaced[id] ? `, ${plan.unplaced[id]} missing` : ""}` : `${placed} of ${plan.capacity[id]} slots`) + (guestCount ? ` · incl. ${guests.map((g) => `${g.count} from ${g.from}`).join(", ")}` : "");
   if (readout.textContent !== text) readout.textContent = text;
+}
+
+// The workflow publishes pictures-simulation/ next to index.html; opened from mockup/ it sits one level up.
+function showPhoto() {
+  const file = PROTOTYPES[state.proto].photos?.[state.hall];
+  const link = document.querySelector(".mk-photo");
+  link.hidden = !file;
+  if (file) link.innerHTML = `Simulation on photo: <a href="${(location.pathname.includes("/mockup/") ? "../" : "") + "pictures-simulation/" + encodeURIComponent(file)}" target="_blank" rel="noopener">${file}</a>`;
 }
 
 function buildTable() {
@@ -1349,6 +1426,7 @@ function syncButtons() {
 function choose(next) {
   Object.assign(state, next);
   syncButtons();
+  showPhoto();
   buildTable();
   dirty = true;
   run();
@@ -1385,6 +1463,7 @@ stage.addEventListener("keydown", (event) => {
 new IntersectionObserver((entries) => { visible = entries[entries.length - 1].isIntersecting; if (visible) run(); }, { rootMargin: "120px 0px" }).observe(stage);
 if (still.matches) idleUntil = Infinity;
 syncButtons();
+showPhoto();
 buildTable();
 render();
 say();

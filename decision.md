@@ -22,17 +22,18 @@
 | semi-horizontal 11×37×27.5 | 229 | 5 (G→F 5) | 234 |
 | B20 + C30 blocs | 234 | 0 | 234 (250 boxes hung, 16 spare) |
 | Benoit (fixed blocs per column) | 232 | 0 | 232 (232 boxes hung, 0 spare, 2 missing: A 1, E 1) |
+| Vincent (Mercier Isara blocs, 4 rows) | 234 | 0 | 234 (242 boxes hung, 8 spare) |
 
 Hall capacity (boxes):
 
-| Hall | needs | standard | semi-vertical | semi-horizontal | B20 + C30 | Benoit |
-|---|---|---|---|---|---|---|
-| AB | 61 | 114 | 104 | 190 | 410 | 60 |
-| C | 40 | 52 | 48 | 85 | 170 | 40 |
-| D | 30 | 38 | 34 | 65 | 130 | 30 |
-| E | 33 | 20 | 18 | 35 | 60 | 32 |
-| F | 40 | 38 | 34 | 65 | 120 | 40 |
-| G | 30 | 14 | 14 | 25 | 60 | 30 |
+| Hall | needs | standard | semi-vertical | semi-horizontal | B20 + C30 | Benoit | Vincent |
+|---|---|---|---|---|---|---|---|
+| AB | 61 | 114 | 104 | 190 | 410 | 60 | 64 |
+| C | 40 | 52 | 48 | 85 | 170 | 40 | 40 |
+| D | 30 | 38 | 34 | 65 | 130 | 30 | 32 |
+| E | 33 | 20 | 18 | 35 | 60 | 32 | 34 |
+| F | 40 | 38 | 34 | 65 | 120 | 40 | 40 |
+| G | 30 | 14 | 14 | 25 | 60 | 30 | 32 |
 
 E and G are the constraint: short free walls (about 4 m each) and a radiator, interphone and planter on the rest. F (40 boxes) no longer fits in standard or semi-vertical, so it sends boxes to C and AB.
 
@@ -119,6 +120,23 @@ Same boxes as the collective selector (14.5 cm high, 35.25 cm wide, 25 cm deep).
 
 Every bloc fits the free walls of its own hall, so no box moves. Compared with the best-fit mix of selector 4 (250 boxes, 16 spare), Benoit hangs 18 boxes less and wastes none, but leaves A and E one box short.
 
+## 6. Vincent (Mercier Isara blocs, 4 rows)
+
+Mercier Isara boxes (NF D 27-404) grouped in blocs of 1 to 4 columns × 4 rows: 33 cm per column, 30.1 cm per row, 34 cm deep (NF D 27-404 standard depth), 5 cm between two blocs on the same wall (7 columns in 2 blocs = 236 cm). Blocs are 120.4 cm tall, base at 56 cm (top 176.4 cm); hall D uses a 50 cm base (top 170.4 cm). Unlike the other selectors, blocs may hang above a planter (planters are 45 cm high).
+
+Halls C, D, E and G reproduce the layouts of `pictures-simulation/`; AB and F are planned with the usual rules (bare wall, 10 cm end margins, 30 cm from radiators, 30 cm corner gap): the fewest, biggest blocs that cover the demand with the fewest spare columns, hung longest first in the tightest run.
+
+| Hall | Needs | Boxes hung | Blocs | Where |
+|---|---|---|---|---|
+| AB | 61 | 64 (3 spare) | 4 × 4 col | north wall 42–174 and 475–607, south wall 42–174 and 475–607 (planned) |
+| C | 40 | 40 | 1 + 2 + 3 + 4 col | west wall 19–85 (2 col), 228.5–261.5 (1 col), 304–403 (3 col), 408–540 (4 col), over the planter |
+| D | 30 | 32 (2 spare) | 1 + 4 + 3 col, base 50 | west wall 20–53 (1 col), 58–190 (4 col), 351–450 (3 col) |
+| E | 33 | 34 (1 spare) | 4 + 4 col + 2 boxes | east wall 10–142 and 147–279 (over the planter), 2 boxes at 305–338, centred at mid-height |
+| F | 40 | 40 | 4 + 3 + 3 col | south wall 310–442 (4 col), north wall 285–384 (3 col), west wall 235–334 (3 col) (planned) |
+| G | 30 | 32 (2 spare) | 4 + 4 col | west wall 10–142 and 147–279, over the planter |
+
+No box leaves its hall: 234 needed, 242 hung, 8 spare (3 in AB, 2 in D, 1 in E, 2 in G).
+
 ## Concerns
 
 - **Plan readings are estimates.** The plans are hand sketches and several dimensions are illegible. Wall segments live in `mockup/halls.mjs`; correcting a length there recomputes everything. E, G and F are the most sensitive (a 30 cm error changes a column).
@@ -131,3 +149,4 @@ Every bloc fits the free walls of its own hall, so no box moves. Compared with t
 - **Benoit leaves 2 boxes unplaced** (A needs 31 for a C30 of 30, E needs 33 for 2 × B16 = 32). Either two more boxes elsewhere, or A and E change bloc (E: B20 + B16 = 36, 3 spare).
 - **Radiator gap (30 cm) and corners:** they cost wall in AB (north-wall blocs start 42 cm from the corner) and shrink capacities, mostly for the small boxes: standard AB 130 → 118, C 60 → 56, D 40 → 38, F 40 → 38, G 18 → 16; semi-vertical AB 122 → 108, F 36 → 34; semi-horizontal AB 225 → 205, G 35 → 30; B20 + C30 AB 480 → 450.
 - **Clearances (30 cm from radiators, 30 cm between boxes of two walls) and corners** cost wall and shrink the box capacities: standard AB 130 → 114, C 60 → 52, D 40 → 38, F 40 → 38, G 18 → 14; semi-vertical AB 122 → 104, C 52 → 48, D 36 → 34, F 36 → 34, G 16 → 14; semi-horizontal AB 225 → 190, C 95 → 85, G 35 → 25 (G now sends 5 boxes to F); B20 + C30 AB 480 → 410, G 70 → 60. Blocs keep their own halls. The corner gap keeps every box front reachable: boxes on two walls never touch in a corner.
+- **Vincent breaks two rules of the other selectors:** blocs hang above planters (base 56 cm, 50 cm in D) and reach 1.76 m, outside the 0.90–1.50 m band. The 33 cm column width and 5 cm gap are derived from the example "7 columns in 2 blocs = 236 cm"; check them against the Isara datasheet. AB and F are planned, not photographed: AB puts one 4-column bloc on each of its four bare wall runs.

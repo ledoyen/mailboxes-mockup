@@ -19,6 +19,8 @@ const CSS = `
 .mk-controls button:focus-visible{outline:1px solid var(--anatomy-hi);outline-offset:2px}
 .iso-stage{touch-action:pan-y;cursor:grab;user-select:none}
 .iso-stage:focus-visible{outline:1px solid var(--anatomy-mid);outline-offset:4px}
+.mk-photo{margin:10px 0 0;font:11px var(--anatomy-mono);letter-spacing:.06em}
+.mk-photo a{color:var(--anatomy-strong)}
 #table{margin-top:20px;overflow-x:auto}
 #table table{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
 #table th,#table td{padding:6px 10px;text-align:left;border-bottom:1px solid var(--anatomy-faint);white-space:nowrap}
@@ -48,8 +50,8 @@ const body = k.plateHtml({
     { mark: "dashed", label: "Cut-away wall, boxes still shown" },
   ],
   caption:
-    "Box sizes: " + Object.values(PROTOTYPES).map((box) => `${box.label} ${sizeOf(box)}`).join(" · ") + ". Boxes sit on bare wall between 0.90 and 1.50 m (B20 and C30 blocs are 1.45 m tall, top at 1.50 m, kept 30 cm from any radiator), 10 cm clear of every door, planter, mirror, interphone and cabinet. Hall sizes and wall segments come from hand-drawn plans and are estimates (mockup/halls.mjs). Screen units are centimetres.",
-  body: `<div class="mk-controls"><div class="mk-group" role="group" aria-label="Hall">${hallButtons}</div><div class="mk-group" role="group" aria-label="Mailbox prototype">${protoButtons}<button type="button" data-turn>Turn 90°</button></div></div><div class="iso-stage" tabindex="0" role="img" aria-label="Hall view: arrow keys turn it"></div><div id="table"></div>`,
+    "Box sizes: " + Object.values(PROTOTYPES).map((box) => `${box.label} ${sizeOf(box)}`).join(" · ") + ". Boxes sit on bare wall between 0.90 and 1.50 m (B20 and C30 blocs are 1.45 m tall, top at 1.50 m, kept 30 cm from any radiator; Vincent blocs are 1.20 m tall, base at 0.56 m, as in the hall photos), 10 cm clear of every door, planter, mirror, interphone and cabinet. Hall sizes and wall segments come from hand-drawn plans and are estimates (mockup/halls.mjs). Screen units are centimetres.",
+  body: `<div class="mk-controls"><div class="mk-group" role="group" aria-label="Hall">${hallButtons}</div><div class="mk-group" role="group" aria-label="Mailbox prototype">${protoButtons}<button type="button" data-turn>Turn 90°</button></div></div><div class="iso-stage" tabindex="0" role="img" aria-label="Hall view: arrow keys turn it"></div><p class="mk-photo" hidden></p><div id="table"></div>`,
 });
 
 const script = `${kitScript()}\n${strip("halls.mjs")}\n${strip("live.js")}`;

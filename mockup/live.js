@@ -158,25 +158,24 @@ function render() {
 
   if (box.blocs) {
     for (const bloc of plan.blocs[state.hall]) {
-      const def = BLOCS[bloc.type];
+      const { def, rows, cell, h, z0, boxes } = blocGeometry(bloc);
       const guest = bloc.from !== state.hall;
       const rect = boxRect(hall, { w: def.w, d: def.d }, bloc);
-      const z0 = BLOC_TOP - def.h, cell = def.h / def.rows;
-      let svg = S(rect, z0, def.h, guest ? "lit" : "hi", { lit: guest });
+      let svg = S(rect, z0, h, guest ? "lit" : "hi", { lit: guest });
       if (!near(bloc.side)) {
         let marks = "";
-        for (let c = 1; c < def.cols; c++) marks += line3(facePoint(bloc.side, rect, c / def.cols, z0 + 1), facePoint(bloc.side, rect, c / def.cols, BLOC_TOP - 1));
-        for (let r = 1; r < def.rows; r++) marks += line3(facePoint(bloc.side, rect, 0.02, z0 + r * cell), facePoint(bloc.side, rect, 0.98, z0 + r * cell));
+        for (let c = 1; c < def.cols; c++) marks += line3(facePoint(bloc.side, rect, c / def.cols, z0 + 1), facePoint(bloc.side, rect, c / def.cols, z0 + h - 1));
+        for (let r = 1; r < rows; r++) marks += line3(facePoint(bloc.side, rect, 0.02, z0 + r * cell), facePoint(bloc.side, rect, 0.98, z0 + r * cell));
         svg += lineSvg(marks, { tone: "lo" });
         let spare = "";
-        for (let index = bloc.used; index < def.boxes; index++) {
+        for (let index = bloc.used; index < boxes; index++) {
           const [row, column] = [Math.floor(index / def.cols), index % def.cols];
           const [u0, u1] = [(column + 0.2) / def.cols, (column + 0.8) / def.cols];
           spare += line3(facePoint(bloc.side, rect, u0, z0 + (row + 0.25) * cell), facePoint(bloc.side, rect, u1, z0 + (row + 0.75) * cell));
         }
         if (spare) svg += lineSvg(spare, { tone: "faint" });
       }
-      (near(bloc.side) ? nearBoxes : farThings).push({ depth: depthAt(rect, z0 + def.h / 2), svg });
+      (near(bloc.side) ? nearBoxes : farThings).push({ depth: depthAt(rect, z0 + h / 2), svg });
     }
   } else {
     const slots = slotsOf(hall, box);
@@ -195,9 +194,17 @@ function say() {
   const guestCount = guests.reduce((sum, entry) => sum + entry.count, 0);
   const placed = plan.own[id] + guestCount;
   const blocs = plan.box.blocs ? Object.keys(BLOCS).map((type) => [type, plan.blocs[id].filter((bloc) => bloc.type === type).length]).filter(([, n]) => n).map(([type, n]) => `${n} × ${type}`).join(" + ") : "";
-  const spare = plan.box.blocs ? plan.blocs[id].reduce((sum, bloc) => sum + BLOCS[bloc.type].boxes - bloc.used, 0) : 0;
+  const spare = plan.box.blocs ? plan.blocs[id].reduce((sum, bloc) => sum + blocGeometry(bloc).boxes - bloc.used, 0) : 0;
   const text = `${HALLS[id].name} · ${plan.box.label}${plan.box.blocs ? "" : ` ${plan.box.h}×${plan.box.w}×${plan.box.d} cm`} · ` + (plan.box.blocs ? `${blocs} · ${placed} boxes (${plan.box.h} cm each), ${spare} spare${plan.unplaced[id] ? `, ${plan.unplaced[id]} missing` : ""}` : `${placed} of ${plan.capacity[id]} slots`) + (guestCount ? ` · incl. ${guests.map((g) => `${g.count} from ${g.from}`).join(", ")}` : "");
   if (readout.textContent !== text) readout.textContent = text;
+}
+
+// The workflow publishes pictures-simulation/ next to index.html; opened from mockup/ it sits one level up.
+function showPhoto() {
+  const file = PROTOTYPES[state.proto].photos?.[state.hall];
+  const link = document.querySelector(".mk-photo");
+  link.hidden = !file;
+  if (file) link.innerHTML = `Simulation on photo: <a href="${(location.pathname.includes("/mockup/") ? "../" : "") + "pictures-simulation/" + encodeURIComponent(file)}" target="_blank" rel="noopener">${file}</a>`;
 }
 
 function buildTable() {
@@ -231,6 +238,7 @@ function syncButtons() {
 function choose(next) {
   Object.assign(state, next);
   syncButtons();
+  showPhoto();
   buildTable();
   dirty = true;
   run();
@@ -267,6 +275,7 @@ stage.addEventListener("keydown", (event) => {
 new IntersectionObserver((entries) => { visible = entries[entries.length - 1].isIntersecting; if (visible) run(); }, { rootMargin: "120px 0px" }).observe(stage);
 if (still.matches) idleUntil = Infinity;
 syncButtons();
+showPhoto();
 buildTable();
 render();
 say();

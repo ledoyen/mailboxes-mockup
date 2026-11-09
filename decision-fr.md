@@ -22,17 +22,18 @@
 | semi-horizontal 11×37×27.5 | 229 | 5 (G→F 5) | 234 |
 | blocs B20 + C30 | 234 | 0 | 234 (250 boîtes posées, 16 en trop) |
 | Benoit (blocs fixes par colonne) | 232 | 0 | 232 (232 boîtes posées, 0 en trop, 2 manquantes : A 1, E 1) |
+| Vincent (blocs Mercier Isara, 4 rangées) | 234 | 0 | 234 (242 boîtes posées, 8 en trop) |
 
 Capacité des halls (boîtes) :
 
-| Hall | besoin | standard | semi-vertical | semi-horizontal | B20 + C30 | Benoit |
-|---|---|---|---|---|---|---|
-| AB | 61 | 114 | 104 | 190 | 410 | 60 |
-| C | 40 | 52 | 48 | 85 | 170 | 40 |
-| D | 30 | 38 | 34 | 65 | 130 | 30 |
-| E | 33 | 20 | 18 | 35 | 60 | 32 |
-| F | 40 | 38 | 34 | 65 | 120 | 40 |
-| G | 30 | 14 | 14 | 25 | 60 | 30 |
+| Hall | besoin | standard | semi-vertical | semi-horizontal | B20 + C30 | Benoit | Vincent |
+|---|---|---|---|---|---|---|---|
+| AB | 61 | 114 | 104 | 190 | 410 | 60 | 64 |
+| C | 40 | 52 | 48 | 85 | 170 | 40 | 40 |
+| D | 30 | 38 | 34 | 65 | 130 | 30 | 32 |
+| E | 33 | 20 | 18 | 35 | 60 | 32 | 34 |
+| F | 40 | 38 | 34 | 65 | 120 | 40 | 40 |
+| G | 30 | 14 | 14 | 25 | 60 | 30 | 32 |
 
 E et G sont la contrainte : peu de mur libre (environ 4 m chacun), le reste est pris par un radiateur, un interphone et un bac. F (40 boîtes) ne tient plus en standard ni en semi-vertical : il envoie des boîtes vers C et AB.
 
@@ -119,6 +120,23 @@ Mêmes boîtes que le sélecteur collectif (14,5 cm de haut, 35,25 cm de large, 
 
 Chaque bloc tient sur les murs libres de son propre hall : aucune boîte ne bouge. Par rapport au meilleur mélange du sélecteur 4 (250 boîtes, 16 en trop), Benoit pose 18 boîtes de moins sans en gaspiller, mais il manque une boîte à A et une à E.
 
+## 6. Vincent (blocs Mercier Isara, 4 rangées)
+
+Boîtes Mercier Isara (NF D 27-404) regroupées en blocs de 1 à 4 colonnes × 4 rangées : 33 cm par colonne, 30,1 cm par rangée, 34 cm de profondeur (profondeur standard NF D 27-404), 5 cm entre deux blocs du même mur (7 colonnes en 2 blocs = 236 cm). Les blocs font 120,4 cm de haut, base à 56 cm (sommet à 176,4 cm) ; le hall D a une base à 50 cm (sommet à 170,4 cm). Contrairement aux autres sélecteurs, un bloc peut être posé au-dessus d'un bac (45 cm de haut).
+
+Les halls C, D, E et G reprennent les implantations de `pictures-simulation/` ; AB et F sont planifiés avec les règles habituelles (mur nu, 10 cm de marge aux extrémités, 30 cm des radiateurs, 30 cm entre murs d'un angle) : le moins de blocs, les plus grands, qui couvrent le besoin avec le moins de colonnes en trop, posés du plus large au plus étroit dans le pan le plus juste.
+
+| Hall | Besoin | Boîtes posées | Blocs | Où |
+|---|---|---|---|---|
+| AB | 61 | 64 (3 en trop) | 4 × 4 col | mur nord 42–174 et 475–607, mur sud 42–174 et 475–607 (planifié) |
+| C | 40 | 40 | 1 + 2 + 3 + 4 col | mur ouest 19–85 (2 col), 228,5–261,5 (1 col), 304–403 (3 col), 408–540 (4 col), au-dessus du bac |
+| D | 30 | 32 (2 en trop) | 1 + 4 + 3 col, base 50 | mur ouest 20–53 (1 col), 58–190 (4 col), 351–450 (3 col) |
+| E | 33 | 34 (1 en trop) | 4 + 4 col + 2 boîtes | mur est 10–142 et 147–279 (au-dessus du bac), 2 boîtes à 305–338, centrées à mi-hauteur |
+| F | 40 | 40 | 4 + 3 + 3 col | mur sud 310–442 (4 col), mur nord 285–384 (3 col), mur ouest 235–334 (3 col) (planifié) |
+| G | 30 | 32 (2 en trop) | 4 + 4 col | mur ouest 10–142 et 147–279, au-dessus du bac |
+
+Aucune boîte ne change de hall : 234 nécessaires, 242 posées, 8 en trop (3 à AB, 2 à D, 1 à E, 2 à G).
+
 ## Points d'attention
 
 - **Les relevés sont des estimations.** Les plans sont des croquis à la main et plusieurs cotes sont illisibles. Les pans de mur sont dans `mockup/halls.mjs` ; corriger une longueur y recalcule tout. E, G et F sont les plus sensibles (30 cm d'erreur changent une colonne).
@@ -131,3 +149,4 @@ Chaque bloc tient sur les murs libres de son propre hall : aucune boîte ne boug
 - **Benoit laisse 2 boîtes non placées** (A a besoin de 31 pour un C30 de 30, E de 33 pour 2 × B16 = 32). Soit deux boîtes ailleurs, soit A et E changent de bloc (E : B20 + B16 = 36, 3 en trop).
 - **Marge radiateur (30 cm) et angles :** ils coûtent du mur dans AB (les blocs du mur nord commencent à 42 cm de l'angle) et réduisent les capacités, surtout pour les petites boîtes : standard AB 130 → 118, C 60 → 56, D 40 → 38, F 40 → 38, G 18 → 16 ; semi-vertical AB 122 → 108, F 36 → 34 ; semi-horizontal AB 225 → 205, G 35 → 30 ; B20 + C30 AB 480 → 450.
 - **Les marges (30 cm des radiateurs, 30 cm entre boîtes de deux murs) et les angles** coûtent du mur et réduisent les capacités : standard AB 130 → 114, C 60 → 52, D 40 → 38, F 40 → 38, G 18 → 14 ; semi-vertical AB 122 → 104, C 52 → 48, D 36 → 34, F 36 → 34, G 16 → 14 ; semi-horizontal AB 225 → 190, C 95 → 85, G 35 → 25 (G envoie maintenant 5 boîtes vers F) ; B20 + C30 AB 480 → 410, G 70 → 60. Les blocs restent dans leur hall. L'écart d'angle garde chaque face de boîte accessible : deux boîtes de murs différents ne se touchent jamais dans un angle.
+- **Vincent déroge à deux règles des autres sélecteurs :** les blocs sont posés au-dessus des bacs (base 56 cm, 50 cm en D) et montent à 1,76 m, hors de la bande 0,90–1,50 m. La largeur de colonne (33 cm) et l'écart (5 cm) sont déduits de l'exemple « 7 colonnes en 2 blocs = 236 cm » ; à vérifier sur la fiche technique Isara. AB et F sont planifiés, pas photographiés : AB met un bloc de 4 colonnes sur chacun de ses quatre pans de mur nu.

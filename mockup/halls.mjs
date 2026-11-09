@@ -8,6 +8,19 @@ export const PROTOTYPES = {
   horizontal: { label: "semi-horizontal", h: 11, w: 37, d: 27.5 },
   collective: { label: "B20 + C30", blocs: true, types: ["B20", "C30"], h: 14.5, d: 25 },
   // Fixed choice per column, whatever the demand.
+  // Mercier Isara (NF D 27-404): blocs of 1–4 columns × 4 rows. Hall layouts C, D, E, G come from pictures-simulation/; AB and F are planned.
+  vincent: {
+    label: "Vincent", blocs: true, types: ["V1", "V2", "V3", "V4"], h: 30.1, d: 34, base: 56,
+    size: "Mercier Isara blocs of 1 to 4 columns × 4 rows (33 cm per column, 30.1 cm per row, 34 cm deep (NF D 27-404), 5 cm between blocs), base at 56 cm (50 cm in hall D)",
+    photos: { C: "hall C.jpeg", D: "hall D.jpeg", E: "hall E.jpeg", G: "Hall G.jpeg" }, // pictures-simulation/
+    layouts: {
+      // at: cm along the wall (N/S walls from the west end, E/W walls from the north end).
+      C: [{ side: "W", at: 304, cols: 3 }, { side: "W", at: 408, cols: 4 }, { side: "W", at: 228.5, cols: 1 }, { side: "W", at: 19, cols: 2 }],
+      D: [{ side: "W", at: 20, cols: 1, base: 50 }, { side: "W", at: 58, cols: 4, base: 50 }, { side: "W", at: 351, cols: 3, base: 50 }],
+      E: [{ side: "E", at: 10, cols: 4 }, { side: "E", at: 147, cols: 4 }, { side: "E", at: 305, cols: 1, rows: 2, base: 86.1 }],
+      G: [{ side: "W", at: 10, cols: 4 }, { side: "W", at: 147, cols: 4 }],
+    },
+  },
   benoit: { label: "Benoit", blocs: true, types: ["B16", "B20", "C30"], h: 14.5, d: 25, walls: { C: "E", E: "W" }, columns: { A: ["C30"], B: ["C30"], C: ["B20", "B20"], D: ["C30"], E: ["B16", "B16"], F: ["B20", "B20"], G: ["C30"] } },
 };
 
@@ -17,9 +30,17 @@ export const BLOCS = {
   B20: { boxes: 20, cols: 2, rows: 10, w: 70.5, h: 145, d: 25 },
   C30: { boxes: 30, cols: 3, rows: 10, w: 101, h: 145, d: 25 },
 };
+for (const cols of [1, 2, 3, 4]) BLOCS[`V${cols}`] = { boxes: 4 * cols, cols, rows: 4, w: 33 * cols, h: 120.4, d: 34, gap: 5 };
 export const BLOC_TOP = 150;
 
-export const sizeOf = (box) => (box.blocs
+// Size and height of a hung bloc: rows and base can differ from the type (Vincent hangs 2 boxes of a 4-row bloc at mid-height).
+export function blocGeometry(bloc) {
+  const def = BLOCS[bloc.type];
+  const rows = bloc.rows ?? def.rows, cell = def.h / def.rows, h = rows * cell;
+  return { def, rows, cell, h, z0: bloc.z0 ?? BLOC_TOP - h, boxes: def.cols * rows };
+}
+
+export const sizeOf = (box) => (box.size ? box.size : box.blocs
   ? Object.entries(BLOCS).filter(([name]) => box.types.includes(name)).map(([name, bloc]) => `${name} ${bloc.boxes} boxes (${bloc.cols} × ${bloc.rows}, ${bloc.w} w × ${bloc.h} h × ${bloc.d} d cm)`).join(", ") + `, ${box.h} cm high each`
   : `${box.h} h × ${box.w} w × ${box.d} d cm`);
 
@@ -191,20 +212,21 @@ function nearestOf(ids) {
 }
 
 // Hangs blocs on the free runs, longest bloc first, each in the tightest run that still fits it.
-function hang(runs, types) {
+function hang(runs, types, base) {
   const work = runs.map((run) => ({ ...run }));
   const taken = [...(work[0]?.taken ?? [])];
   const placed = [];
   for (const { type, i } of types.map((type, i) => ({ type, i })).sort((a, b) => BLOCS[b.type].w - BLOCS[a.type].w)) {
-    const def = BLOCS[type], span = [BLOC_TOP - def.h, BLOC_TOP];
+    const def = BLOCS[type], span = base == null ? [BLOC_TOP - def.h, BLOC_TOP] : [base, base + def.h];
     const start = (run) => clearAt(HALLS[run.hall], run.side, run.at, def, span, taken, RADIATOR_GAP);
     const run = work.filter((candidate) => candidate.free >= def.w + start(candidate) - candidate.at).sort((a, b) => a.free - b.free)[0];
     if (!run) return null;
     const at = start(run);
-    placed.push({ type, i, side: run.side, at });
+    placed.push({ type, i, side: run.side, at, ...(base == null ? {} : { z0: base }) });
     taken.push({ side: run.side, rect: wallStrip(HALLS[run.hall], run.side, at, def.w, def.d), z0: span[0], z1: span[1] });
-    run.free -= at + def.w - run.at;
-    run.at = at + def.w;
+    const gap = def.gap ?? 0;
+    run.free -= at + def.w + gap - run.at;
+    run.at = at + def.w + gap;
   }
   for (const run of work) run.taken = taken;
   return { placed, runs: work };
@@ -253,7 +275,53 @@ function allocateFixed(box) {
   return { box, capacity, own, guests: Object.fromEntries(ids.map((id) => [id, []])), unplaced, nearest: nearestOf(ids), blocs, columns };
 }
 
+// Vincent: halls with a picture-based layout hang it as drawn; the others get the fewest, biggest blocs that cover the demand with the fewest spare columns.
+function allocateVincent(box) {
+  const ids = Object.keys(HALLS);
+  const blocs = {}, own = {}, unplaced = {}, capacity = {};
+  for (const id of ids) {
+    const hall = HALLS[id];
+    if (box.layouts[id]) {
+      const taken = [];
+      blocs[id] = box.layouts[id].map((item, i) => {
+        const bloc = { type: `V${item.cols}`, i, side: item.side, at: item.at, z0: item.base ?? box.base, rows: item.rows };
+        const { def, z0, h } = blocGeometry(bloc);
+        if (clearAt(hall, bloc.side, bloc.at, def, [z0, z0 + h], taken, RADIATOR_GAP) !== bloc.at) throw new Error(`${box.label}: layout of hall ${id} collides at ${bloc.side} wall, ${bloc.at} cm`);
+        taken.push({ side: bloc.side, rect: wallStrip(hall, bloc.side, bloc.at, def.w, def.d), z0, z1: z0 + h });
+        return bloc;
+      });
+    } else {
+      const runs = freeRunsOf(hall).sort(byLongest).map((run) => ({ hall: id, taken: [], side: run.side, at: run.from, free: run.length }));
+      const need = Math.ceil(DEMAND[id] / 4);
+      let best = null;
+      for (let cols = need; cols <= need + 3 && !best; cols++) {
+        for (let n4 = 0; n4 * 4 <= cols; n4++) for (let n3 = 0; n4 * 4 + n3 * 3 <= cols; n3++) for (let n2 = 0; n4 * 4 + n3 * 3 + n2 * 2 <= cols; n2++) {
+          const n1 = cols - 4 * n4 - 3 * n3 - 2 * n2;
+          const hung = hang(runs, [...Array(n4).fill("V4"), ...Array(n3).fill("V3"), ...Array(n2).fill("V2"), ...Array(n1).fill("V1")], box.base);
+          if (!hung) continue;
+          const width = hung.placed.reduce((sum, bloc) => sum + BLOCS[bloc.type].w, 0);
+          const key = [hung.placed.length, width];
+          if (!best || before(key, best.key)) best = { ...hung, key };
+        }
+      }
+      if (!best) throw new Error(`${box.label}: blocs of hall ${id} do not fit its free walls`);
+      blocs[id] = best.placed.sort((a, b) => a.i - b.i);
+    }
+    let left = DEMAND[id];
+    blocs[id] = blocs[id].map((bloc) => {
+      const used = Math.min(blocGeometry(bloc).boxes, left);
+      left -= used;
+      return { ...bloc, from: id, used };
+    });
+    capacity[id] = blocs[id].reduce((sum, bloc) => sum + blocGeometry(bloc).boxes, 0);
+    own[id] = DEMAND[id] - left;
+    unplaced[id] = left;
+  }
+  return { box, capacity, own, guests: Object.fromEntries(ids.map((id) => [id, []])), unplaced, nearest: nearestOf(ids), blocs };
+}
+
 function allocateBlocs(box) {
+  if (box.layouts) return allocateVincent(box);
   if (box.columns) return allocateFixed(box);
   const ids = Object.keys(HALLS);
   const nearest = nearestOf(ids);
