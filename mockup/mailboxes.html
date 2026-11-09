@@ -813,7 +813,7 @@ const PROTOTYPES = {
   horizontal: { label: "semi-horizontal", h: 11, w: 37, d: 27.5 },
   collective: { label: "B20 + C30", blocs: true, types: ["B20", "C30"], h: 14.5, d: 25 },
   // Fixed choice per column, whatever the demand.
-  benoit: { label: "Benoit", blocs: true, types: ["B16", "B20", "C30"], h: 14.5, d: 25, columns: { A: ["C30"], B: ["C30"], C: ["B20", "B20"], D: ["C30"], E: ["B16", "B16"], F: ["B20", "B20"], G: ["C30"] } },
+  benoit: { label: "Benoit", blocs: true, types: ["B16", "B20", "C30"], h: 14.5, d: 25, walls: { C: "E", E: "W" }, columns: { A: ["C30"], B: ["C30"], C: ["B20", "B20"], D: ["C30"], E: ["B16", "B16"], F: ["B20", "B20"], G: ["C30"] } },
 };
 
 // Collective blocs: one wall-mounted cabinet holding cols × rows boxes, hung with its top at BLOC_TOP.
@@ -1039,7 +1039,7 @@ function allocateFixed(box) {
   const blocs = {}, own = {}, unplaced = {}, capacity = {}, columns = {};
   for (const id of ids) {
     const mine = Object.entries(COLUMNS).filter(([, hall]) => hall === id).flatMap(([column]) => box.columns[column].map((type) => ({ type, column })));
-    const runs = freeRunsOf(HALLS[id]).sort(byLongest).map((run) => ({ hall: id, taken: [], side: run.side, at: run.from, free: run.length }));
+    const runs = freeRunsOf(HALLS[id]).filter((run) => !box.walls?.[id] || run.side === box.walls[id]).sort(byLongest).map((run) => ({ hall: id, taken: [], side: run.side, at: run.from, free: run.length }));
     const hung = hang(runs, mine.map((item) => item.type));
     if (!hung) throw new Error(`${box.label}: blocs of hall ${id} do not fit its free walls`);
     const need = { ...BOXES };

@@ -111,9 +111,9 @@ Mêmes boîtes que le sélecteur collectif (14,5 cm de haut, 35,25 cm de large, 
 | Hall | Besoin | Boîtes posées | Où |
 |---|---|---|---|
 | AB | 61 | 60 (1 manquante) | mur est 830–931 (C30, A), mur nord 42–143 (C30, B) |
-| C | 40 | 40 | mur ouest 10–80,5 et 460–530,5 (2 × B20) |
+| C | 40 | 40 | mur est 180–321 (2 × B20 côte à côte) |
 | D | 30 | 30 | mur ouest 342–443 (C30) |
-| E | 33 | 32 (1 manquante) | mur ouest 10–80,5, mur est 265–335,5 (2 × B16) |
+| E | 33 | 32 (1 manquante) | mur ouest 10–151 (2 × B16 côte à côte) |
 | F | 40 | 40 | mur est 10–80,5, mur nord 285–355,5 (2 × B20) |
 | G | 30 | 30 | mur est 230–331 (C30) |
 

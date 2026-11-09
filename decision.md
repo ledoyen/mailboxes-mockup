@@ -111,9 +111,9 @@ Same boxes as the collective selector (14.5 cm high, 35.25 cm wide, 25 cm deep).
 | Hall | Needs | Boxes hung | Where |
 |---|---|---|---|
 | AB | 61 | 60 (1 missing) | east wall 830–931 (C30, A), north wall 42–143 (C30, B) |
-| C | 40 | 40 | west wall 10–80.5 and 460–530.5 (B20 ×2) |
+| C | 40 | 40 | east wall 180–321 (B20 ×2, side by side) |
 | D | 30 | 30 | west wall 342–443 (C30) |
-| E | 33 | 32 (1 missing) | west wall 10–80.5, east wall 265–335.5 (B16 ×2) |
+| E | 33 | 32 (1 missing) | west wall 10–151 (B16 ×2, side by side) |
 | F | 40 | 40 | east wall 10–80.5, north wall 285–355.5 (B20 ×2) |
 | G | 30 | 30 | east wall 230–331 (C30) |
 
